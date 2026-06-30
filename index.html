@@ -76,7 +76,8 @@
     .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #2a2a2a; }
     .svc-card { background: #1e1e1e; border-bottom: 3px solid #e52929; padding: 36px 28px; }
     .svc-card.featured { background: #e52929; border-bottom-color: #c01f1f; }
-    .svc-card i { font-size: 48px; display: block; margin-bottom: 20px; color: #e52929; }
+    .svc-card i { font-size: 34px; display: block; margin-bottom: 20px; color: #e52929; }
+    .svc-card { transition: background 0.4s ease, border-bottom-color 0.4s ease; }
     .svc-card.featured i { color: #fff; }
     .svc-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
     .svc-card p { font-size: 13px; line-height: 1.7; color: #9ca3af; }
@@ -298,7 +299,7 @@
   <div class="svc-grid">
     <div class="svc-card"><i class="ti ti-circle-dotted"></i><h3>Tire Installation</h3><p>Professional mounting and balancing for all tire brands. New and used options available for every budget.</p></div>
     <div class="svc-card"><i class="ti ti-refresh"></i><h3>Tire Rotation</h3><p>Extend the life of your tires with regular rotation. Evenly distributes wear for maximum performance.</p></div>
-    <div class="svc-card featured"><i class="ti ti-adjustments-horizontal"></i><h3>Wheel Alignment</h3><p>Precision alignment keeps your vehicle handling correctly and prevents premature tire wear.</p></div>
+    <div class="svc-card"><i class="ti ti-adjustments-horizontal"></i><h3>Wheel Alignment</h3><p>Precision alignment keeps your vehicle handling correctly and prevents premature tire wear.</p></div>
     <div class="svc-card"><i class="ti ti-tool"></i><h3>Flat Tire Repair</h3><p>Emergency flat repair, even near closing time. We assess and fix or replace your tire fast.</p></div>
     <div class="svc-card"><i class="ti ti-gauge"></i><h3>Wheel Balancing</h3><p>Eliminate vibration and uneven wear with expert wheel balancing. In and out in as little as 20 minutes.</p></div>
     <div class="svc-card"><i class="ti ti-engine"></i><h3>Brake Service</h3><p>Full brake inspection, pad and rotor replacement, and fluid flush. Stop safely, every time.</p></div>
@@ -509,6 +510,19 @@
     updateSteps();
   }
   document.getElementById('appt-date').min = new Date().toISOString().split('T')[0];
+
+  // Sequential service card highlight loop
+  (function() {
+    const cards = document.querySelectorAll('.svc-card');
+    let idx = 0;
+    function highlight() {
+      cards.forEach(c => c.classList.remove('featured'));
+      cards[idx].classList.add('featured');
+      idx = (idx + 1) % cards.length;
+    }
+    highlight();
+    setInterval(highlight, 3000);
+  })();
 </script>
 </body>
 </html>
