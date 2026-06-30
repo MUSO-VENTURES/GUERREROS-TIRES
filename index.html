@@ -118,8 +118,9 @@
     /* ── Footer ── */
     footer { background: #0d0d0d; padding: 48px 40px 0; }
     .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 160px; gap: 32px; align-items: start; padding-bottom: 40px; border-bottom: 1px solid #222; }
-    .footer-cat-col { align-self: stretch; overflow: hidden; margin: -48px -40px -40px 0; min-height: 260px; }
-    .footer-cat-col img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 8%; filter: grayscale(100%) contrast(1.1) brightness(0.65); display: block; }
+    .footer-cat-col { align-self: stretch; position: relative; overflow: hidden; margin: -48px -40px -40px 0; min-height: 260px; }
+    .footer-cat-col img { width: 100%; height: 100%; object-fit: cover; object-position: right 8%; transform: scale(1.35); transform-origin: right center; filter: grayscale(100%) contrast(1.1) brightness(0.65); display: block; }
+    .footer-cat-col::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #0d0d0d 0%, rgba(13,13,13,0) 25%); pointer-events: none; }
     .footer-logo { height: 66px; width: auto; margin-bottom: 6px; }
     .footer-tagline { font-size: 12px; color: #e52929; font-style: italic; margin-bottom: 14px; }
     .footer-about { font-size: 13px; line-height: 1.8; color: #9ca3af; max-width: 240px; }
@@ -345,7 +346,8 @@
 <div class="newsletter">
   <div class="newsletter-inner">
     <div style="max-width:400px;"><h2>Get deals and updates from us.</h2><p class="gt-muted" style="font-size:14px;margin-top:8px;">Promotions and tire tips delivered to your inbox.</p></div>
-    <div class="newsletter-form"><input type="email" placeholder="Your email address"><button class="gt-btn-red" style="white-space:nowrap;">Subscribe</button></div>
+    <input type="email" placeholder="Your email address" style="flex:1;max-width:320px;background:#111;border:1px solid #333;color:#fff;padding:14px 18px;font-size:14px;outline:none;font-family:inherit;">
+    <button class="gt-btn-red" style="white-space:nowrap;margin-left:auto;">Subscribe</button>
   </div>
 </div>
 
