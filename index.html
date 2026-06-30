@@ -117,13 +117,9 @@
 
     /* ── Footer ── */
     footer { background: #0d0d0d; padding: 48px 40px 0; }
-    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.8fr; gap: 40px; padding-bottom: 0; border-bottom: none; }
-    .footer-cat { position: relative; overflow: hidden; min-height: 260px; margin: -48px -40px -0px 0; }
-    .footer-cat img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(100%) contrast(1.1) brightness(0.65); display: block; }
-    .footer-cat-gradient { position: absolute; inset: 0; background: linear-gradient(to right, #0d0d0d 0%, rgba(13,13,13,0.5) 40%, rgba(13,13,13,0) 70%); }
-    .footer-cat-info { position: absolute; bottom: 20px; left: 20px; }
-    .footer-cat-info p { font-size: 11px; color: #9ca3af; font-style: italic; }
-    .footer-text-cols { padding-bottom: 40px; border-bottom: 1px solid #222; display: contents; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 160px; gap: 32px; align-items: start; padding-bottom: 40px; border-bottom: 1px solid #222; }
+    .footer-cat-col { align-self: stretch; overflow: hidden; margin: -48px -40px -40px 0; min-height: 260px; }
+    .footer-cat-col img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 8%; filter: grayscale(100%) contrast(1.1) brightness(0.65); display: block; }
     .footer-logo { height: 66px; width: auto; margin-bottom: 6px; }
     .footer-tagline { font-size: 12px; color: #e52929; font-style: italic; margin-bottom: 14px; }
     .footer-about { font-size: 13px; line-height: 1.8; color: #9ca3af; max-width: 240px; }
@@ -385,20 +381,18 @@
         <div class="footer-hours-row closed"><span>Sunday</span><span>Closed</span></div>
       </div>
     </div>
-    <div class="footer-cat">
-      <img src="images/office-cat.jpg" alt="Guerrero's Tires shop cat">
-      <div class="footer-cat-gradient"></div>
-      <div class="footer-cat-info">
-        <h4 style="font-size:13px;font-weight:700;margin-bottom:4px;">Find Us</h4>
-        <div class="footer-contact" style="margin-bottom:8px;">
-          <div class="footer-contact-row"><i class="ti ti-map-pin"></i><span>3581 1st St<br>Livermore, CA 94551</span></div>
-          <div class="footer-contact-row"><i class="ti ti-phone"></i><a href="tel:9254491904" style="color:#9ca3af;text-decoration:none;">(925) 449-1904</a></div>
-        </div>
-        <p>The shop cat approves.</p>
+    <div class="footer-col">
+      <h4>Find Us</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-row"><i class="ti ti-map-pin"></i><span>3581 1st St<br>Livermore, CA 94551</span></div>
+        <div class="footer-contact-row"><i class="ti ti-phone"></i><a href="tel:9254491904" style="color:#9ca3af;text-decoration:none;">(925) 449-1904</a></div>
       </div>
+      <p style="font-size:11px;color:#555;font-style:italic;margin-top:16px;">The shop cat approves.</p>
+    </div>
+    <div class="footer-cat-col">
+      <img src="images/office-cat.jpg" alt="Guerrero's Tires shop cat">
     </div>
   </div>
-  <div style="border-top:1px solid #222;margin:0 0;"></div>
   <div class="footer-bottom">
     <p>© 2025 Guerrero's Tires · Livermore, CA · All rights reserved.</p>
     <p>Privacy Policy · Terms of Service</p>
