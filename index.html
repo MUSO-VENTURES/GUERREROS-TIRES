@@ -143,6 +143,31 @@
     .footer-wordmark { overflow: hidden; padding: 0 20px; }
     .footer-wordmark-text { font-size: 110px; font-weight: 900; color: #fff; opacity: 0.04; letter-spacing: -4px; line-height: 1; padding-bottom: 10px; white-space: nowrap; }
 
+    /* ── Emergency Section ── */
+    .emergency { background: #0d0d0d; padding: 0; }
+    .emergency-banner { background: #7a1414; padding: 10px 40px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .emergency-banner span { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #fff; }
+    .emergency-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .emg-card { position: relative; background: #111; padding: 52px 48px; overflow: hidden; cursor: pointer; transition: background 0.3s; }
+    .emg-card:hover { background: #161616; }
+    .emg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #e52929; }
+    .emg-card-icon { font-size: 52px; color: #e52929; margin-bottom: 24px; display: block; opacity: 0.9; }
+    .emg-card h2 { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .emg-card p { font-size: 14px; line-height: 1.8; color: #9ca3af; max-width: 380px; margin-bottom: 32px; }
+    .emg-card .emg-cta { display: inline-flex; align-items: center; gap: 8px; background: #e52929; color: #fff; padding: 13px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .emg-card .emg-cta:hover { background: #c41f1f; }
+    .emg-card .emg-bg-num { position: absolute; right: -10px; bottom: -20px; font-size: 200px; font-weight: 900; color: #fff; opacity: 0.025; line-height: 1; pointer-events: none; letter-spacing: -8px; }
+    .emg-divider { width: 2px; background: #0d0d0d; }
+
+    /* ── Floating Emergency Button ── */
+    .float-emergency { position: fixed; bottom: 28px; right: 28px; z-index: 150; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .float-btn { display: flex; align-items: center; gap: 10px; background: #e52929; color: #fff; border: none; padding: 14px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 24px rgba(229,41,41,0.4); text-transform: uppercase; white-space: nowrap; }
+    .float-btn i { font-size: 18px; }
+    .float-btn.secondary { background: #1a1a1a; border: 1px solid #333; box-shadow: 0 4px 16px rgba(0,0,0,0.4); font-size: 12px; padding: 11px 16px; display: none; }
+    .float-emergency:hover .float-btn.secondary { display: flex; }
+    .float-pulse { animation: pulse-ring 2s ease-out infinite; }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(229,41,41,0.5); } 70% { box-shadow: 0 0 0 12px rgba(229,41,41,0); } 100% { box-shadow: 0 0 0 0 rgba(229,41,41,0); } }
+
     /* ── Modal ── */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.open { display: flex; }
@@ -190,11 +215,15 @@
   <ul class="nav-links">
     <li><a href="#top" class="active">Home</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#emergency">Emergency</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;">Book Appointment</a>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <a href="#" class="gt-btn-outline" style="font-size:12px;padding:8px 16px;border-color:#e52929;color:#e52929;" onclick="openRoadsideModal();return false;"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px;"></i>Emergency</a>
+    <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;">Book Appointment</a>
+  </div>
 </nav>
 
 <!-- ── Hero ── -->
@@ -221,6 +250,37 @@
 </section>
 
 <div class="red-bar"></div>
+
+<!-- ── Emergency Services ── -->
+<section class="emergency" id="emergency">
+  <div class="emergency-banner">
+    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+    <span>Available for emergencies — Call us anytime: (925) 449-1904</span>
+    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+  </div>
+  <div class="emergency-cards">
+    <div class="emg-card" onclick="openRoadsideModal()">
+      <i class="ti ti-truck-delivery emg-card-icon"></i>
+      <h2>Roadside<br>Assistance</h2>
+      <p>Stranded with a flat or blowout? We'll come to you. Tell us where you are and what happened — we'll dispatch help fast.</p>
+      <button class="emg-cta"><i class="ti ti-map-pin" style="font-size:15px;"></i> Request Roadside Help</button>
+      <div class="emg-bg-num">01</div>
+    </div>
+    <div class="emg-card" onclick="open24HrModal()">
+      <i class="ti ti-clock-24 emg-card-icon"></i>
+      <h2>24-Hour<br>Emergency Repair</h2>
+      <p>Tire emergencies don't wait for business hours. Submit your repair request now and we'll call you back as soon as possible.</p>
+      <button class="emg-cta"><i class="ti ti-tool" style="font-size:15px;"></i> Request Emergency Repair</button>
+      <div class="emg-bg-num">24</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Floating Emergency Button ── -->
+<div class="float-emergency">
+  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-clock-24"></i> 24-Hr Repair</button>
+  <button class="float-btn float-pulse" onclick="openRoadsideModal()"><i class="ti ti-alert-triangle"></i> Roadside Help</button>
+</div>
 
 <!-- ── Gallery ── -->
 <section class="gallery" id="gallery">
@@ -402,6 +462,153 @@
 </footer>
 <div class="footer-wordmark"><div class="footer-wordmark-text">Guerrero's</div></div>
 
+<!-- ── Roadside Assistance Modal ── -->
+<div class="modal-overlay" id="roadside-overlay" onclick="if(event.target===this)closeRoadsideModal()">
+  <div class="modal">
+    <div class="modal-header" style="background:#1a0505;">
+      <div>
+        <div class="modal-header-sub"><i class="ti ti-alert-triangle" style="font-size:11px;margin-right:4px;"></i>Emergency Service</div>
+        <div class="modal-header-title">Roadside Assistance</div>
+      </div>
+      <button class="close-btn" onclick="closeRoadsideModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div id="roadside-form-view">
+      <div class="modal-body">
+        <div class="step-bar" id="roadside-steps">
+          <div class="step active" id="rs-s1"></div>
+          <div class="step" id="rs-s2"></div>
+          <div class="step" id="rs-s3"></div>
+        </div>
+        <!-- Step 1: Issue -->
+        <div id="rs-step1">
+          <div class="field"><span class="field-label">What's the problem?</span>
+            <div class="svc-chips">
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Flat Tire</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Blowout</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Tire Won't Inflate</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Rim Damage</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Spare Needed</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Other</div>
+            </div>
+          </div>
+          <div class="field"><span class="field-label">How many tires affected?</span>
+            <select class="inp"><option value="">Select...</option><option>1</option><option>2</option><option>3+</option></select>
+          </div>
+        </div>
+        <!-- Step 2: Location -->
+        <div id="rs-step2" style="display:none;">
+          <div class="field">
+            <span class="field-label">Your Location</span>
+            <button onclick="getGPS()" style="width:100%;background:#1a0808;border:1px dashed #e52929;color:#e52929;padding:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;"><i class="ti ti-current-location" style="font-size:16px;"></i> Use My Current Location</button>
+            <input class="inp" id="rs-address" placeholder="Or type your address / nearest cross street">
+            <p class="field-note">Include any landmarks to help us find you faster.</p>
+          </div>
+          <div class="field"><span class="field-label">Vehicle</span>
+            <div class="row2">
+              <input class="inp" placeholder="Year & Make (e.g. 2018 Honda)">
+              <input class="inp" placeholder="Model (e.g. Civic)">
+            </div>
+          </div>
+        </div>
+        <!-- Step 3: Contact -->
+        <div id="rs-step3" style="display:none;">
+          <div class="field"><span class="field-label">Your Name</span><input class="inp" placeholder="Full name"></div>
+          <div class="field"><span class="field-label">Phone Number</span><input class="inp" type="tel" placeholder="(925) 000-0000">
+            <p class="field-note">We'll call or text you with an ETA.</p>
+          </div>
+          <div class="field"><span class="field-label">Additional Notes</span><textarea class="inp" rows="2" placeholder="Anything else we should know?" style="resize:none;"></textarea></div>
+          <div style="background:#1a0808;border:1px solid #3a1010;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-top:4px;">
+            <i class="ti ti-phone" style="font-size:22px;color:#e52929;"></i>
+            <div><div style="font-size:13px;font-weight:700;">For fastest response</div><div style="font-size:12px;color:#9ca3af;">Call directly: <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="rs-back-btn" onclick="rsStep(-1)" style="display:none;">Back</button>
+        <button class="btn-red-modal" id="rs-next-btn" onclick="rsStep(1)">Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i></button>
+      </div>
+    </div>
+    <div class="success-view" id="roadside-success" style="display:none;">
+      <div class="success-icon"><i class="ti ti-truck-delivery"></i></div>
+      <div style="font-size:18px;font-weight:800;">Help is on the way!</div>
+      <p style="color:#9ca3af;font-size:14px;line-height:1.7;">We received your request. Expect a call within minutes. If urgent, call us directly at <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a>.</p>
+      <button class="btn-red-modal" onclick="closeRoadsideModal()" style="margin-top:8px;">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 24-Hour Repair Modal ── -->
+<div class="modal-overlay" id="repair24-overlay" onclick="if(event.target===this)close24HrModal()">
+  <div class="modal">
+    <div class="modal-header" style="background:#0a0a1a;">
+      <div>
+        <div class="modal-header-sub"><i class="ti ti-clock-24" style="font-size:11px;margin-right:4px;"></i>After-Hours Service</div>
+        <div class="modal-header-title">24-Hour Emergency Repair</div>
+      </div>
+      <button class="close-btn" onclick="close24HrModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div id="repair24-form-view">
+      <div class="modal-body">
+        <div class="step-bar" id="repair24-steps">
+          <div class="step active" id="r24-s1"></div>
+          <div class="step" id="r24-s2"></div>
+          <div class="step" id="r24-s3"></div>
+        </div>
+        <!-- Step 1: Service & Urgency -->
+        <div id="r24-step1">
+          <div class="field"><span class="field-label">Service Needed</span>
+            <div class="svc-chips">
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Tire Installation</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Flat Repair</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Wheel Alignment</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Wheel Balancing</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Brake Service</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Other</div>
+            </div>
+          </div>
+          <div class="field"><span class="field-label">Urgency</span>
+            <select class="inp"><option value="">Select urgency level...</option><option>ASAP — I'm stranded</option><option>Tonight</option><option>First thing tomorrow</option><option>Within 24 hours</option></select>
+          </div>
+        </div>
+        <!-- Step 2: Vehicle & Issue -->
+        <div id="r24-step2" style="display:none;">
+          <div class="field"><span class="field-label">Vehicle</span>
+            <div class="row2">
+              <input class="inp" placeholder="Year & Make">
+              <input class="inp" placeholder="Model">
+            </div>
+          </div>
+          <div class="field"><span class="field-label">Describe the Issue</span>
+            <textarea class="inp" rows="3" placeholder="Tell us what's happening — sounds, symptoms, warning lights..." style="resize:none;"></textarea>
+          </div>
+        </div>
+        <!-- Step 3: Contact & Callback -->
+        <div id="r24-step3" style="display:none;">
+          <div class="field"><span class="field-label">Your Name</span><input class="inp" placeholder="Full name"></div>
+          <div class="field"><span class="field-label">Phone Number</span><input class="inp" type="tel" placeholder="(925) 000-0000"></div>
+          <div class="field"><span class="field-label">Best Time to Call Back</span>
+            <select class="inp"><option value="">Select a window...</option><option>Right now</option><option>Within the hour</option><option>Tonight after 8 PM</option><option>Early morning (6–8 AM)</option><option>Anytime</option></select>
+          </div>
+          <div style="background:#0d0d1a;border:1px solid #1a1a3a;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-top:4px;">
+            <i class="ti ti-clock-24" style="font-size:22px;color:#6b8cff;"></i>
+            <div><div style="font-size:13px;font-weight:700;">We monitor requests 24/7</div><div style="font-size:12px;color:#9ca3af;">Or call directly: <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="r24-back-btn" onclick="r24Step(-1)" style="display:none;">Back</button>
+        <button class="btn-red-modal" id="r24-next-btn" onclick="r24Step(1)">Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i></button>
+      </div>
+    </div>
+    <div class="success-view" id="repair24-success" style="display:none;">
+      <div class="success-icon"><i class="ti ti-clock-24"></i></div>
+      <div style="font-size:18px;font-weight:800;">Request Received!</div>
+      <p style="color:#9ca3af;font-size:14px;line-height:1.7;">We'll call you back at your requested time. For immediate help call <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a>.</p>
+      <button class="btn-red-modal" onclick="close24HrModal()" style="margin-top:8px;">Done</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── Book Appointment Modal ── -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
@@ -518,6 +725,54 @@
     updateSteps();
   }
   document.getElementById('appt-date').min = new Date().toISOString().split('T')[0];
+
+  // ── Roadside Modal ──
+  var rsStepNum = 1;
+  function openRoadsideModal() { document.getElementById('roadside-overlay').classList.add('open'); rsStepNum=1; updateRsSteps(); }
+  function closeRoadsideModal() { document.getElementById('roadside-overlay').classList.remove('open'); document.getElementById('roadside-form-view').style.display='block'; document.getElementById('roadside-success').style.display='none'; rsStepNum=1; updateRsSteps(); }
+  function updateRsSteps() {
+    [1,2,3].forEach(function(i){
+      document.getElementById('rs-step'+i).style.display = i===rsStepNum?'block':'none';
+      var s=document.getElementById('rs-s'+i);
+      s.className='step'+(i<rsStepNum?' done':i===rsStepNum?' active':'');
+    });
+    document.getElementById('rs-back-btn').style.display = rsStepNum>1?'inline-block':'none';
+    document.getElementById('rs-next-btn').innerHTML = rsStepNum===3
+      ? '<i class="ti ti-truck-delivery" style="font-size:14px;vertical-align:-1px;margin-right:6px;"></i> Send Request'
+      : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
+  }
+  function rsStep(dir) {
+    if(dir===1 && rsStepNum<3) { rsStepNum++; updateRsSteps(); }
+    else if(dir===1 && rsStepNum===3) { document.getElementById('roadside-form-view').style.display='none'; document.getElementById('roadside-success').style.display='flex'; }
+    else if(dir===-1 && rsStepNum>1) { rsStepNum--; updateRsSteps(); }
+  }
+  function getGPS() {
+    if(!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function(pos){
+      document.getElementById('rs-address').value = pos.coords.latitude.toFixed(5)+', '+pos.coords.longitude.toFixed(5)+' (GPS coordinates)';
+    });
+  }
+
+  // ── 24-Hour Repair Modal ──
+  var r24StepNum = 1;
+  function open24HrModal() { document.getElementById('repair24-overlay').classList.add('open'); r24StepNum=1; updateR24Steps(); }
+  function close24HrModal() { document.getElementById('repair24-overlay').classList.remove('open'); document.getElementById('repair24-form-view').style.display='block'; document.getElementById('repair24-success').style.display='none'; r24StepNum=1; updateR24Steps(); }
+  function updateR24Steps() {
+    [1,2,3].forEach(function(i){
+      document.getElementById('r24-step'+i).style.display = i===r24StepNum?'block':'none';
+      var s=document.getElementById('r24-s'+i);
+      s.className='step'+(i<r24StepNum?' done':i===r24StepNum?' active':'');
+    });
+    document.getElementById('r24-back-btn').style.display = r24StepNum>1?'inline-block':'none';
+    document.getElementById('r24-next-btn').innerHTML = r24StepNum===3
+      ? '<i class="ti ti-calendar-check" style="font-size:14px;vertical-align:-1px;margin-right:6px;"></i> Submit Request'
+      : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
+  }
+  function r24Step(dir) {
+    if(dir===1 && r24StepNum<3) { r24StepNum++; updateR24Steps(); }
+    else if(dir===1 && r24StepNum===3) { document.getElementById('repair24-form-view').style.display='none'; document.getElementById('repair24-success').style.display='flex'; }
+    else if(dir===-1 && r24StepNum>1) { r24StepNum--; updateR24Steps(); }
+  }
 
   // Sequential service card highlight loop
   (function() {
