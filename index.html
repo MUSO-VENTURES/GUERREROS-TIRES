@@ -147,11 +147,11 @@
     .emergency { background: #0d0d0d; padding: 0; }
     .emergency-banner { background: #7a1414; padding: 10px 40px; display: flex; align-items: center; justify-content: center; gap: 12px; }
     .emergency-banner span { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #fff; }
-    .emergency-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .emg-card { position: relative; background: #111; padding: 52px 48px; overflow: hidden; cursor: pointer; transition: background 0.3s; }
-    .emg-card:hover { background: #161616; }
+    .emergency-cards { display: flex; justify-content: center; gap: 20px; padding: 48px 40px; background: #0d0d0d; }
+    .emg-card { position: relative; background: #111; padding: 44px 40px; overflow: hidden; cursor: pointer; transition: background 0.3s, border-color 0.3s; width: 400px; flex-shrink: 0; border: 1px solid #2a2a2a; }
+    .emg-card:hover { background: #161616; border-color: #e52929; }
     .emg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #e52929; }
-    .emg-card-icon { font-size: 52px; color: #e52929; margin-bottom: 24px; display: block; opacity: 0.9; }
+    .emg-card-icon { font-size: 49px; color: #e52929; margin-bottom: 24px; display: block; opacity: 0.9; }
     .emg-card h2 { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; }
     .emg-card p { font-size: 14px; line-height: 1.8; color: #9ca3af; max-width: 380px; margin-bottom: 32px; }
     .emg-card .emg-cta { display: inline-flex; align-items: center; gap: 8px; background: #e52929; color: #fff; padding: 13px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
@@ -267,7 +267,7 @@
       <div class="emg-bg-num">01</div>
     </div>
     <div class="emg-card" onclick="open24HrModal()">
-      <i class="ti ti-clock-24 emg-card-icon"></i>
+      <i class="ti ti-alarm emg-card-icon"></i>
       <h2>24-Hour<br>Emergency Repair</h2>
       <p>Tire emergencies don't wait for business hours. Submit your repair request now and we'll call you back as soon as possible.</p>
       <button class="emg-cta"><i class="ti ti-tool" style="font-size:15px;"></i> Request Emergency Repair</button>
@@ -278,7 +278,7 @@
 
 <!-- ── Floating Emergency Button ── -->
 <div class="float-emergency">
-  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-clock-24"></i> 24-Hr Repair</button>
+  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-alarm"></i> 24-Hr Repair</button>
   <button class="float-btn float-pulse" onclick="openRoadsideModal()"><i class="ti ti-alert-triangle"></i> Roadside Help</button>
 </div>
 
@@ -542,7 +542,7 @@
   <div class="modal">
     <div class="modal-header" style="background:#0a0a1a;">
       <div>
-        <div class="modal-header-sub"><i class="ti ti-clock-24" style="font-size:11px;margin-right:4px;"></i>After-Hours Service</div>
+        <div class="modal-header-sub"><i class="ti ti-alarm" style="font-size:11px;margin-right:4px;"></i>After-Hours Service</div>
         <div class="modal-header-title">24-Hour Emergency Repair</div>
       </div>
       <button class="close-btn" onclick="close24HrModal()"><i class="ti ti-x"></i></button>
@@ -601,7 +601,7 @@
       </div>
     </div>
     <div class="success-view" id="repair24-success" style="display:none;">
-      <div class="success-icon"><i class="ti ti-clock-24"></i></div>
+      <div class="success-icon"><i class="ti ti-alarm"></i></div>
       <div style="font-size:18px;font-weight:800;">Request Received!</div>
       <p style="color:#9ca3af;font-size:14px;line-height:1.7;">We'll call you back at your requested time. For immediate help call <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a>.</p>
       <button class="btn-red-modal" onclick="close24HrModal()" style="margin-top:8px;">Done</button>
