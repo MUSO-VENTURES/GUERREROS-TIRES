@@ -45,9 +45,9 @@
 
     /* ── Gallery ── */
     .gallery { background: #0d0d0d; padding: 60px 0 0; }
-    .gallery-header { padding: 0 40px 40px; display: flex; align-items: flex-end; justify-content: space-between; }
+    .gallery-header { padding: 0 40px 40px; }
     .gallery-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
-    .gallery-sub { font-size: 14px; color: #555; max-width: 240px; line-height: 1.8; text-align: right; }
+    .gallery-sub { font-size: 14px; color: #555; line-height: 1.6; margin-top: 8px; white-space: nowrap; }
     .photo-grid-top { display: grid; grid-template-columns: 3fr 2fr; gap: 2px; }
     .photo-grid-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 2px; }
     .photo-cell { position: relative; overflow: hidden; background: #1c1c1c; }
@@ -213,16 +213,20 @@
 <nav id="top">
   <img src="assets/logo.svg" class="nav-logo" alt="Guerrero's Tires logo">
   <ul class="nav-links">
-    <li><a href="#top" class="active">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#emergency">Emergency</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#top" class="active" data-i18n="nav-home">Home</a></li>
+    <li><a href="#services" data-i18n="nav-services">Services</a></li>
+    <li><a href="#emergency" data-i18n="nav-emergency">Emergency</a></li>
+    <li><a href="#gallery" data-i18n="nav-gallery">Gallery</a></li>
+    <li><a href="#reviews" data-i18n="nav-reviews">Reviews</a></li>
+    <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
   </ul>
   <div style="display:flex;gap:8px;align-items:center;">
+    <div style="display:flex;border:1px solid #2a2a2a;overflow:hidden;font-size:12px;font-weight:600;">
+      <button id="lang-en" onclick="setLang('en')" style="background:#e52929;color:#fff;border:none;padding:7px 12px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.5px;">EN</button>
+      <button id="lang-es" onclick="setLang('es')" style="background:transparent;color:#666;border:none;padding:7px 12px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.5px;">ES</button>
+    </div>
     <a href="#" class="gt-btn-outline" style="font-size:12px;padding:8px 16px;border-color:#e52929;color:#e52929;" onclick="openRoadsideModal();return false;"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px;"></i>Emergency</a>
-    <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;">Book Appointment</a>
+    <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;" data-i18n="book-btn">Book Appointment</a>
   </div>
 </nav>
 
@@ -231,16 +235,16 @@
   <img class="hero-photo" src="images/wheel-showroom.png" alt="">
   <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="gt-label" style="margin-bottom:16px;">Livermore, CA</div>
-    <h1>Your Trusted <span class="gt-red">Tire</span><br>& Auto Experts</h1>
-    <p class="hero-tagline">Quality tires. Honest prices.</p>
-    <p class="hero-desc">Serving Livermore and the entire Bay Area. Fast, affordable tire service with friendly staff who treat you like a neighbor.</p>
+    <div class="gt-label" style="margin-bottom:16px;" data-i18n="hero-label">Livermore, CA</div>
+    <h1 data-i18n="hero-h1">Your Trusted <span class="gt-red">Tire</span><br>& Auto Experts</h1>
+    <p class="hero-tagline" data-i18n="hero-tagline">Quality tires. Honest prices.</p>
+    <p class="hero-desc" data-i18n="hero-desc">Serving Livermore and the entire Bay Area. Fast, affordable tire service with friendly staff who treat you like a neighbor.</p>
     <div class="hero-ctas">
-      <a href="#services" class="gt-btn-red">View Services</a>
-      <a href="https://maps.google.com/?q=3581+1st+St+Livermore+CA+94551" class="gt-btn-outline" target="_blank">Get Directions</a>
+      <a href="#services" class="gt-btn-red" data-i18n="btn-services">View Services</a>
+      <a href="https://maps.google.com/?q=3581+1st+St+Livermore+CA+94551" class="gt-btn-outline" target="_blank" data-i18n="btn-directions">Get Directions</a>
     </div>
     <div class="hero-stats">
-      <div><div style="font-size:20px;font-weight:800;">(925) 449-1904</div><div class="hero-stat-label">Call Us Today</div></div>
+      <div><div style="font-size:20px;font-weight:800;">(925) 449-1904</div><div class="hero-stat-label" data-i18n="stat-call">Call Us Today</div></div>
       <div class="hero-divider"></div>
       <div><div style="font-size:20px;font-weight:800;">Mon–Fri</div><div class="hero-stat-label">8:30 AM – 6:00 PM</div></div>
       <div class="hero-divider"></div>
@@ -255,22 +259,22 @@
 <section class="emergency" id="emergency">
   <div class="emergency-banner">
     <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
-    <span>Available for emergencies — Call us anytime: (925) 449-1904</span>
+    <span data-i18n="emg-banner">Available for emergencies — Call us anytime: (925) 449-1904</span>
     <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
   </div>
   <div class="emergency-cards">
     <div class="emg-card" onclick="openRoadsideModal()">
       <i class="ti ti-truck-delivery emg-card-icon"></i>
-      <h2>Roadside<br>Assistance</h2>
-      <p>Stranded with a flat or blowout? We'll come to you. Tell us where you are and what happened — we'll dispatch help fast.</p>
-      <button class="emg-cta"><i class="ti ti-map-pin" style="font-size:15px;"></i> Request Roadside Help</button>
+      <h2 data-i18n="emg-r-h2">Roadside<br>Assistance</h2>
+      <p data-i18n="emg-r-p">Stranded with a flat or blowout? We'll come to you. Tell us where you are and what happened — we'll dispatch help fast.</p>
+      <button class="emg-cta" data-i18n="emg-r-btn"><i class="ti ti-map-pin" style="font-size:15px;"></i> Request Roadside Help</button>
       <div class="emg-bg-num">01</div>
     </div>
     <div class="emg-card" onclick="open24HrModal()">
       <i class="ti ti-alarm emg-card-icon"></i>
-      <h2>24-Hour<br>Emergency Repair</h2>
-      <p>Tire emergencies don't wait for business hours. Submit your repair request now and we'll call you back as soon as possible.</p>
-      <button class="emg-cta"><i class="ti ti-tool" style="font-size:15px;"></i> Request Emergency Repair</button>
+      <h2 data-i18n="emg-24-h2">24-Hour<br>Emergency Repair</h2>
+      <p data-i18n="emg-24-p">Tire emergencies don't wait for business hours. Submit your repair request now and we'll call you back as soon as possible.</p>
+      <button class="emg-cta" data-i18n="emg-24-btn"><i class="ti ti-tool" style="font-size:15px;"></i> Request Emergency Repair</button>
       <div class="emg-bg-num">24</div>
     </div>
   </div>
@@ -278,18 +282,16 @@
 
 <!-- ── Floating Emergency Button ── -->
 <div class="float-emergency">
-  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-alarm"></i> 24-Hr Repair</button>
-  <button class="float-btn float-pulse" onclick="openRoadsideModal()"><i class="ti ti-alert-triangle"></i> Roadside Help</button>
+  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-alarm" data-i18n="float-24"></i> 24-Hr Repair</button>
+  <button class="float-btn float-pulse" onclick="openRoadsideModal()"><i class="ti ti-alert-triangle" data-i18n="float-roadside"></i> Roadside Help</button>
 </div>
 
 <!-- ── Gallery ── -->
 <section class="gallery" id="gallery">
   <div class="gallery-header">
-    <div>
-      <div class="gt-label" style="margin-bottom:10px;">Inside the Shop</div>
-      <h2>Real work.<br>Real results.</h2>
-    </div>
-    <p class="gallery-sub">New & used tires. Alignments. Wheels. Professional service — in and out fast.</p>
+    <div class="gt-label" style="margin-bottom:10px;" data-i18n="gallery-label" data-en="Inside the Shop" data-es="Dentro del Taller">Inside the Shop</div>
+    <h2 data-i18n="gallery-h2" data-en="Real work.<br>Real results." data-es="Trabajo real.<br>Resultados reales.">Real work.<br>Real results.</h2>
+    <p class="gallery-sub" data-i18n="gallery-sub" data-en="New &amp; used tires. Alignments. Wheels. Professional service — in and out fast." data-es="Llantas nuevas y usadas. Alineaciones. Rines. Servicio profesional — rápido y eficiente.">New &amp; used tires. Alignments. Wheels. Professional service — in and out fast.</p>
   </div>
 
   <!-- Row 1: wide + tall -->
@@ -355,8 +357,8 @@
 <section class="services" id="services">
   <div class="section-header">
     <div>
-      <div class="gt-label" style="margin-bottom:10px;">What We Offer</div>
-      <h2>Our Services</h2>
+      <div class="gt-label" style="margin-bottom:10px;" data-i18n="svc-label">What We Offer</div>
+      <h2 data-i18n="svc-h2">Our Services</h2>
     </div>
   </div>
   <div class="svc-grid">
@@ -371,8 +373,8 @@
 
 <!-- ── Why Choose Us ── -->
 <section class="why">
-  <h2>Why Choose Us?</h2>
-  <p class="why-sub">We're here for whatever you need</p>
+  <h2 data-i18n="why-h2">Why Choose Us?</h2>
+  <p class="why-sub" data-i18n="why-sub">We're here for whatever you need</p>
   <div class="why-grid">
     <div class="why-item"><div class="icon-circle"><i class="ti ti-clock"></i></div><div><h3>In & Out in 20–30 Min</h3><p>Most tire jobs are done fast. We respect your time and get you back on the road without the wait.</p></div></div>
     <div class="why-item"><div class="icon-circle"><i class="ti ti-currency-dollar"></i></div><div><h3>Honest, Affordable Pricing</h3><p>Transparent quotes, no surprises. New and used tire options so there's always something for your budget.</p></div></div>
@@ -416,8 +418,8 @@
   <div class="footer-grid">
     <div>
       <img src="assets/logo.svg" class="footer-logo" alt="Guerrero's Tires logo">
-      <p class="footer-tagline">Quality tires. Honest prices.</p>
-      <p class="footer-about">Your car gets you to what matters most. Trust Guerrero's to keep you moving safely and affordably.</p>
+      <p class="footer-tagline" data-i18n="footer-tagline">Quality tires. Honest prices.</p>
+      <p class="footer-about" data-i18n="footer-about">Your car gets you to what matters most. Trust Guerrero's to keep you moving safely and affordably.</p>
       <div class="social-row">
         <a href="#" class="social-btn"><i class="ti ti-brand-facebook"></i></a>
         <a href="#" class="social-btn"><i class="ti ti-brand-instagram"></i></a>
@@ -786,6 +788,100 @@
     highlight();
     setInterval(highlight, 3000);
   })();
+
+  // ── Language Switcher ──
+  var lang = 'en';
+  var T = {
+    en: {
+      'nav-home':'Home','nav-services':'Services','nav-emergency':'Emergency','nav-gallery':'Gallery','nav-reviews':'Reviews','nav-contact':'Contact',
+      'hero-label':'Livermore, CA',
+      'hero-h1':'Your Trusted <span class="gt-red">Tire</span><br>& Auto Experts',
+      'hero-tagline':'Quality tires. Honest prices.',
+      'hero-desc':'Serving Livermore and the entire Bay Area. Fast, affordable tire service with friendly staff who treat you like a neighbor.',
+      'btn-services':'View Services','btn-directions':'Get Directions','stat-call':'Call Us Today',
+      'emg-banner':'Available for emergencies — Call us anytime: (925) 449-1904',
+      'emg-r-h2':'Roadside<br>Assistance',
+      'emg-r-p':'Stranded with a flat or blowout? We\'ll come to you. Tell us where you are and what happened — we\'ll dispatch help fast.',
+      'emg-r-btn':'Request Roadside Help',
+      'emg-24-h2':'24-Hour<br>Emergency Repair',
+      'emg-24-p':'Tire emergencies don\'t wait for business hours. Submit your repair request now and we\'ll call you back as soon as possible.',
+      'emg-24-btn':'Request Emergency Repair',
+      'gallery-label':'Inside the Shop','gallery-h2':'Real work.<br>Real results.',
+      'gallery-sub':'New & used tires. Alignments. Wheels. Professional service — in and out fast.',
+      'svc-label':'What We Offer','svc-h2':'Our Services',
+      'why-h2':'Why Choose Us?','why-sub':'We\'re here for whatever you need',
+      'footer-tagline':'Quality tires. Honest prices.',
+      'footer-about':'Your car gets you to what matters most. Trust Guerrero\'s to keep you moving safely and affordably.',
+      'book-btn':'Book Appointment','float-roadside':'Roadside Help','float-24':'24-Hr Repair'
+    },
+    es: {
+      'nav-home':'Inicio','nav-services':'Servicios','nav-emergency':'Emergencia','nav-gallery':'Galería','nav-reviews':'Reseñas','nav-contact':'Contacto',
+      'hero-label':'Livermore, CA',
+      'hero-h1':'Sus Expertos de <span class="gt-red">Llantas</span><br>y Autos de Confianza',
+      'hero-tagline':'Llantas de calidad. Precios honestos.',
+      'hero-desc':'Sirviendo a Livermore y toda el Área de la Bahía. Servicio rápido y accesible con personal amable que lo trata como vecino.',
+      'btn-services':'Ver Servicios','btn-directions':'Cómo Llegar','stat-call':'Llámenos Hoy',
+      'emg-banner':'Disponibles para emergencias — Llámenos: (925) 449-1904',
+      'emg-r-h2':'Asistencia<br>en Carretera',
+      'emg-r-p':'¿Varado con una llanta ponchada? Vamos a donde usted está. Díganos su ubicación y qué pasó — le enviamos ayuda rápido.',
+      'emg-r-btn':'Solicitar Ayuda en Carretera',
+      'emg-24-h2':'Reparación de<br>Emergencia 24 Horas',
+      'emg-24-p':'Las emergencias no esperan el horario de trabajo. Envíe su solicitud ahora y le llamamos lo antes posible.',
+      'emg-24-btn':'Solicitar Reparación de Emergencia',
+      'gallery-label':'Dentro del Taller','gallery-h2':'Trabajo real.<br>Resultados reales.',
+      'gallery-sub':'Llantas nuevas y usadas. Alineaciones. Rines. Servicio profesional — rápido y eficiente.',
+      'svc-label':'Lo Que Ofrecemos','svc-h2':'Nuestros Servicios',
+      'why-h2':'¿Por Qué Elegirnos?','why-sub':'Aquí para lo que necesite',
+      'footer-tagline':'Llantas de calidad. Precios honestos.',
+      'footer-about':'Su auto lo lleva a lo que más importa. Confíe en Guerrero\'s para mantenerlo en la carretera de forma segura y accesible.',
+      'book-btn':'Reservar Cita','float-roadside':'Ayuda en Carretera','float-24':'Reparación 24h'
+    }
+  };
+  var elMap = {
+    'nav-home':   '[data-i18n="nav-home"]',
+    'nav-services':'[data-i18n="nav-services"]',
+    'nav-emergency':'[data-i18n="nav-emergency"]',
+    'nav-gallery':'[data-i18n="nav-gallery"]',
+    'nav-reviews':'[data-i18n="nav-reviews"]',
+    'nav-contact':'[data-i18n="nav-contact"]',
+    'hero-label': '[data-i18n="hero-label"]',
+    'hero-h1':    '[data-i18n="hero-h1"]',
+    'hero-tagline':'[data-i18n="hero-tagline"]',
+    'hero-desc':  '[data-i18n="hero-desc"]',
+    'btn-services':'[data-i18n="btn-services"]',
+    'btn-directions':'[data-i18n="btn-directions"]',
+    'stat-call':  '[data-i18n="stat-call"]',
+    'emg-banner': '[data-i18n="emg-banner"]',
+    'emg-r-h2':   '[data-i18n="emg-r-h2"]',
+    'emg-r-p':    '[data-i18n="emg-r-p"]',
+    'emg-r-btn':  '[data-i18n="emg-r-btn"]',
+    'emg-24-h2':  '[data-i18n="emg-24-h2"]',
+    'emg-24-p':   '[data-i18n="emg-24-p"]',
+    'emg-24-btn': '[data-i18n="emg-24-btn"]',
+    'gallery-label':'[data-i18n="gallery-label"]',
+    'gallery-h2': '[data-i18n="gallery-h2"]',
+    'gallery-sub':'[data-i18n="gallery-sub"]',
+    'svc-label':  '[data-i18n="svc-label"]',
+    'svc-h2':     '[data-i18n="svc-h2"]',
+    'why-h2':     '[data-i18n="why-h2"]',
+    'why-sub':    '[data-i18n="why-sub"]',
+    'footer-tagline':'[data-i18n="footer-tagline"]',
+    'footer-about':'[data-i18n="footer-about"]',
+    'book-btn':   '[data-i18n="book-btn"]',
+    'float-roadside':'[data-i18n="float-roadside"]',
+    'float-24':   '[data-i18n="float-24"]'
+  };
+  function setLang(l) {
+    lang = l;
+    document.getElementById('lang-en').style.background = l==='en' ? '#e52929' : 'transparent';
+    document.getElementById('lang-en').style.color = l==='en' ? '#fff' : '#666';
+    document.getElementById('lang-es').style.background = l==='es' ? '#e52929' : 'transparent';
+    document.getElementById('lang-es').style.color = l==='es' ? '#fff' : '#666';
+    Object.keys(elMap).forEach(function(k) {
+      var el = document.querySelector(elMap[k]);
+      if (el) el.innerHTML = T[l][k];
+    });
+  }
 </script>
 </body>
 </html>
