@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guerrero's Tires — Livermore, CA</title>
+  <meta name="description" content="Guerrero's Tires — New & used tires, alignments, and wheels in Livermore, CA. Fast, honest, affordable. Call (925) 449-1904.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #161616; color: #fff; font-family: 'Inter', sans-serif; }
+
+    /* ── Utilities ── */
+    .gt-red { color: #e52929; }
+    .gt-muted { color: #9ca3af; }
+    .gt-label { color: #e52929; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    .gt-btn-red { background: #e52929; color: #fff; border: none; padding: 12px 28px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; text-transform: uppercase; text-decoration: none; display: inline-block; }
+    .gt-btn-outline { background: transparent; color: #fff; border: 1px solid #fff; padding: 11px 28px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; text-transform: uppercase; text-decoration: none; display: inline-block; }
+
+    /* ── Nav ── */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 40px; border-bottom: 1px solid #2a2a2a; background: #111; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { height: 117px; width: auto; }
+    .nav-links { display: flex; gap: 36px; font-size: 14px; font-weight: 500; color: #ccc; list-style: none; }
+    .nav-links a { color: inherit; text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: #e52929; }
+
+    /* ── Hero ── */
+    .hero { position: relative; overflow: hidden; background: #111; min-height: 540px; display: flex; align-items: center; padding: 60px 40px; }
+    .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 96% center; filter: grayscale(100%) contrast(1.1) brightness(0.70); z-index: 0; }
+    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to right, #111 0%, #111 40%, rgba(17,17,17,0.5) 54%, rgba(17,17,17,0) 65%); z-index: 1; }
+    .hero-graphic { display: none; }
+    .hero-circle { display: none; }
+    .hero-ring { display: none; }
+    .hero-content { position: relative; z-index: 2; max-width: 520px; }
+    .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.05; letter-spacing: -1px; margin-bottom: 12px; }
+    .hero-tagline { font-size: 18px; font-weight: 600; color: #e52929; margin-bottom: 20px; }
+    .hero-desc { color: #9ca3af; font-size: 15px; line-height: 1.7; margin-bottom: 32px; max-width: 380px; }
+    .hero-ctas { display: flex; gap: 12px; }
+    .hero-stats { display: flex; gap: 28px; margin-top: 40px; }
+    .hero-stat-label { color: #9ca3af; font-size: 12px; margin-top: 2px; }
+    .hero-divider { width: 1px; background: #2a2a2a; }
+    .red-bar { height: 3px; background: #e52929; }
+
+    /* ── Gallery ── */
+    .gallery { background: #0d0d0d; padding: 60px 0 0; }
+    .gallery-header { padding: 0 40px 40px; display: flex; align-items: flex-end; justify-content: space-between; }
+    .gallery-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+    .gallery-sub { font-size: 14px; color: #555; max-width: 240px; line-height: 1.8; text-align: right; }
+    .photo-grid-top { display: grid; grid-template-columns: 3fr 2fr; gap: 2px; }
+    .photo-grid-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 2px; }
+    .photo-cell { position: relative; overflow: hidden; background: #1c1c1c; }
+    .photo-cell img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(100%) contrast(1.1) brightness(0.85);
+      transition: transform 0.4s ease;
+    }
+    .photo-cell:hover img { transform: scale(1.03); }
+    .mask-bottom { position: absolute; inset: 0; background: linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.6) 40%, rgba(13,13,13,0) 75%); pointer-events: none; }
+    .mask-right { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,13,13,0) 0%, rgba(13,13,13,0) 60%, #0d0d0d 100%); pointer-events: none; }
+    .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; z-index: 2; }
+    .photo-caption-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #e52929; margin-bottom: 4px; }
+    .photo-caption h3 { font-size: 15px; font-weight: 700; line-height: 1.3; }
+    .photo-red-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #e52929; z-index: 3; }
+    .stats-bar { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border-top: 1px solid #1a1a1a; margin-top: 2px; }
+    .stat-cell { padding: 28px 32px; border-right: 1px solid #1a1a1a; }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-size: 32px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+    .stat-desc { font-size: 12px; color: #555; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* ── Services ── */
+    .services { padding: 60px 40px; background: #161616; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    .section-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #2a2a2a; }
+    .svc-card { background: #1e1e1e; border-bottom: 3px solid #e52929; padding: 36px 28px; }
+    .svc-card.featured { background: #e52929; border-bottom-color: #c01f1f; }
+    .svc-card i { font-size: 34px; display: block; margin-bottom: 20px; color: #e52929; }
+    .svc-card { transition: background 0.4s ease, border-bottom-color 0.4s ease; }
+    .svc-card.featured i { color: #fff; }
+    .svc-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .svc-card p { font-size: 13px; line-height: 1.7; color: #9ca3af; }
+    .svc-card.featured p { color: rgba(255,255,255,0.8); }
+
+    /* ── Why Choose Us ── */
+    .why { padding: 60px 40px; background: #111; }
+    .why h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; text-align: center; }
+    .why-sub { color: #e52929; font-size: 14px; font-weight: 500; text-align: center; margin-top: 8px; margin-bottom: 48px; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 800px; margin: 0 auto; }
+    .why-item { display: flex; gap: 16px; align-items: flex-start; }
+    .icon-circle { width: 48px; height: 48px; min-width: 48px; background: #1e0808; border-radius: 50%; border: 1px solid #e52929; display: flex; align-items: center; justify-content: center; }
+    .icon-circle i { font-size: 22px; color: #e52929; }
+    .why-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .why-item p { font-size: 13px; line-height: 1.7; color: #9ca3af; }
+
+    /* ── Reviews ── */
+    .reviews { padding: 60px 40px; background: #161616; }
+    .reviews-header { text-align: center; margin-bottom: 40px; }
+    .reviews-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+    .rating-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; }
+    .stars { color: #e52929; font-size: 13px; letter-spacing: 1px; }
+    .rating-num { font-size: 22px; font-weight: 800; }
+    .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .review-card { background: #1e1e1e; border: 1px solid #2a2a2a; border-top: 3px solid #e52929; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .reviewer-name { font-weight: 700; font-size: 14px; }
+    .reviewer-loc { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+    blockquote { font-size: 14px; line-height: 1.7; color: #e0e0e0; }
+
+    /* ── Newsletter ── */
+    .newsletter { background: #1a0808; border-top: 1px solid #2a1010; border-bottom: 1px solid #2a1010; padding: 48px 40px; }
+    .newsletter-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .newsletter h2 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 8px; }
+    .newsletter-form { display: flex; flex: 1; max-width: 440px; }
+    .newsletter-form input { flex: 1; background: #111; border: 1px solid #333; border-right: none; color: #fff; padding: 14px 18px; font-size: 14px; outline: none; font-family: inherit; }
+    .newsletter-form input::placeholder { color: #555; }
+
+    /* ── Footer ── */
+    footer { background: #0d0d0d; padding: 48px 40px 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 160px; gap: 32px; align-items: start; padding-bottom: 40px; border-bottom: 1px solid #222; }
+    .footer-cat-col { align-self: stretch; position: relative; overflow: hidden; margin: -48px -40px -40px 0; min-height: 260px; }
+    .footer-cat-col img { width: 100%; height: 100%; object-fit: cover; object-position: right 8%; transform: scale(1.35); transform-origin: right center; filter: grayscale(100%) contrast(1.1) brightness(0.65); display: block; }
+    .footer-cat-col::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #0d0d0d 0%, rgba(13,13,13,0) 25%); pointer-events: none; }
+    .footer-logo { height: 66px; width: auto; margin-bottom: 6px; }
+    .footer-tagline { font-size: 12px; color: #e52929; font-style: italic; margin-bottom: 14px; }
+    .footer-about { font-size: 13px; line-height: 1.8; color: #9ca3af; max-width: 240px; }
+    .social-row { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn { width: 34px; height: 34px; background: #1e1e1e; border: 1px solid #333; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+    .social-btn i { font-size: 16px; color: #9ca3af; }
+    .footer-col h4 { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+    .footer-links a { color: #9ca3af; text-decoration: none; }
+    .footer-links a:first-child { color: #e52929; }
+    .footer-hours { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+    .footer-hours-row { display: flex; justify-content: space-between; gap: 12px; color: #9ca3af; }
+    .footer-hours-row span:last-child { color: #fff; }
+    .footer-hours-row.closed span:last-child { color: #e52929; }
+    .footer-contact { display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: #9ca3af; }
+    .footer-contact-row { display: flex; align-items: flex-start; gap: 8px; }
+    .footer-contact-row i { font-size: 15px; color: #e52929; margin-top: 1px; }
+    .footer-bottom { padding: 20px 0; display: flex; justify-content: space-between; }
+    .footer-bottom p { font-size: 12px; color: #555; }
+    .footer-wordmark { overflow: hidden; padding: 0 20px; }
+    .footer-wordmark-text { font-size: 110px; font-weight: 900; color: #fff; opacity: 0.04; letter-spacing: -4px; line-height: 1; padding-bottom: 10px; white-space: nowrap; }
+
+    /* ── Emergency Section ── */
+    .emergency { background: #0d0d0d; padding: 0; }
+    .emergency-banner { background: #7a1414; padding: 10px 40px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .emergency-banner span { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #fff; }
+    .emergency-cards { display: flex; justify-content: center; gap: 50px; padding: 48px 40px; background: #0d0d0d; }
+    .emg-card { position: relative; background: #111; padding: 44px 40px; overflow: hidden; cursor: default; transition: none; width: 400px; flex-shrink: 0; border: 1px solid #2a2a2a; opacity: 0.75; }
+    .emg-card:hover { background: #111; border-color: #2a2a2a; }
+    .emg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #e52929; }
+    .emg-card::after { content: 'COMING SOON'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg); font-size: 28px; font-weight: 900; letter-spacing: 6px; color: rgba(229,41,41,0.18); border: 3px solid rgba(229,41,41,0.15); padding: 10px 24px; white-space: nowrap; pointer-events: none; z-index: 10; }
+    .emg-card-icon { font-size: 49px; color: #e52929; margin-bottom: 24px; display: block; opacity: 0.9; }
+    .emg-card h2 { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .emg-card p { font-size: 14px; line-height: 1.8; color: #9ca3af; max-width: 380px; margin-bottom: 32px; }
+    .emg-card .emg-cta { display: inline-flex; align-items: center; gap: 8px; background: #444; color: #888; padding: 13px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border: none; cursor: not-allowed; font-family: 'Inter', sans-serif; pointer-events: none; }
+    .emg-card .emg-cta:hover { background: #444; }
+    .emg-card .emg-bg-num { position: absolute; right: -10px; bottom: -20px; font-size: 200px; font-weight: 900; color: #fff; opacity: 0.025; line-height: 1; pointer-events: none; letter-spacing: -8px; }
+    .emg-divider { width: 2px; background: #0d0d0d; }
+
+    /* ── Floating Emergency Button ── */
+    .float-emergency { display: none; }
+    .float-btn { display: flex; align-items: center; gap: 10px; background: #e52929; color: #fff; border: none; padding: 14px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; font-family: 'Inter', sans-serif; box-shadow: 0 4px 24px rgba(229,41,41,0.4); text-transform: uppercase; white-space: nowrap; }
+    .float-btn i { font-size: 18px; }
+    .float-btn.secondary { background: #1a1a1a; border: 1px solid #333; box-shadow: 0 4px 16px rgba(0,0,0,0.4); font-size: 12px; padding: 11px 16px; display: none; }
+    .float-emergency:hover .float-btn.secondary { display: flex; }
+    .float-pulse { animation: pulse-ring 2s ease-out infinite; }
+    @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(229,41,41,0.5); } 70% { box-shadow: 0 0 0 12px rgba(229,41,41,0); } 100% { box-shadow: 0 0 0 0 rgba(229,41,41,0); } }
+
+    /* ── Modal ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; width: 100%; max-width: 520px; overflow: hidden; }
+    .modal-header { background: #111; padding: 24px 28px 20px; border-bottom: 1px solid #222; display: flex; align-items: center; justify-content: space-between; }
+    .modal-header-title { font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .modal-header-sub { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #e52929; margin-bottom: 4px; }
+    .close-btn { background: #222; border: none; border-radius: 6px; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #888; }
+    .close-btn:hover { background: #2e2e2e; color: #fff; }
+    .modal-body { padding: 28px; }
+    .modal-footer { padding: 20px 28px; border-top: 1px solid #222; background: #111; display: flex; gap: 10px; justify-content: flex-end; }
+    .step-bar { display: flex; gap: 6px; margin-bottom: 24px; }
+    .step { height: 3px; border-radius: 2px; flex: 1; background: #2a2a2a; transition: background 0.2s; }
+    .step.active { background: #e52929; }
+    .step.done { background: #7a1414; }
+    .field { margin-bottom: 20px; }
+    .field-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #e52929; margin-bottom: 8px; display: block; }
+    .inp { width: 100%; background: #111; border: 1px solid #2e2e2e; color: #fff; padding: 11px 14px; font-size: 14px; font-family: 'Inter', sans-serif; border-radius: 6px; outline: none; }
+    .inp:focus { border-color: #e52929; }
+    .inp::placeholder { color: #555; }
+    select.inp { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+    select.inp option { background: #1a1a1a; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .svc-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .chip { border: 1px solid #2e2e2e; border-radius: 6px; padding: 10px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #bbb; background: #111; user-select: none; }
+    .chip:hover { border-color: #444; color: #fff; }
+    .chip.selected { border-color: #e52929; color: #fff; background: #1e0808; }
+    .chip-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; border: 1.5px solid #444; }
+    .chip.selected .chip-dot { background: #e52929; border-color: #e52929; }
+    .field-note { font-size: 12px; color: #555; margin-top: 6px; }
+    .btn-ghost { background: transparent; color: #999; border: 1px solid #333; padding: 12px 22px; font-size: 14px; font-weight: 500; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .btn-ghost:hover { border-color: #555; color: #fff; }
+    .btn-red-modal { background: #e52929; color: #fff; border: none; padding: 12px 28px; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .btn-red-modal:hover { background: #c41f1f; }
+    .success-view { display: none; flex-direction: column; align-items: center; text-align: center; padding: 40px 28px; gap: 16px; }
+    .success-icon { width: 64px; height: 64px; border-radius: 50%; background: #1e0808; border: 2px solid #e52929; display: flex; align-items: center; justify-content: center; }
+    .success-icon i { font-size: 28px; color: #e52929; }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav id="top">
+  <img src="assets/logo.svg" class="nav-logo" alt="Guerrero's Tires logo">
+  <ul class="nav-links">
+    <li><a href="#top" class="active">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#emergency">Emergency</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span style="font-size:12px;padding:8px 16px;border:1px solid #444;color:#555;display:inline-block;cursor:not-allowed;"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px;"></i>Emergency <span style="font-size:10px;background:#222;padding:2px 6px;margin-left:4px;border-radius:3px;">Soon</span></span>
+    <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <img class="hero-photo" src="images/wheel-showroom.png" alt="">
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="gt-label" style="margin-bottom:16px;">Livermore, CA</div>
+    <h1>Your Trusted <span class="gt-red">Tire</span><br>& Auto Experts</h1>
+    <p class="hero-tagline">Quality tires. Honest prices.</p>
+    <p class="hero-desc">Serving Livermore and the entire Bay Area. Fast, affordable tire service with friendly staff who treat you like a neighbor.</p>
+    <div class="hero-ctas">
+      <a href="#services" class="gt-btn-red">View Services</a>
+      <a href="https://maps.google.com/?q=3581+1st+St+Livermore+CA+94551" class="gt-btn-outline" target="_blank">Get Directions</a>
+    </div>
+    <div class="hero-stats">
+      <div><div style="font-size:20px;font-weight:800;">(925) 449-1904</div><div class="hero-stat-label">Call Us Today</div></div>
+      <div class="hero-divider"></div>
+      <div><div style="font-size:20px;font-weight:800;">Mon–Fri</div><div class="hero-stat-label">8:30 AM – 6:00 PM</div></div>
+      <div class="hero-divider"></div>
+      <div><div style="font-size:20px;font-weight:800;">Sat</div><div class="hero-stat-label">9:00 AM – 5:00 PM</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="red-bar"></div>
+
+<!-- ── Emergency Services ── -->
+<section class="emergency" id="emergency">
+  <div class="emergency-banner">
+    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+    <span>Available for emergencies — Call us anytime: (925) 449-1904</span>
+    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+  </div>
+  <div class="emergency-cards">
+    <div class="emg-card">
+      <i class="ti ti-truck-delivery emg-card-icon"></i>
+      <h2>Roadside<br>Assistance</h2>
+      <p>Stranded with a flat or blowout? We'll come to you. Tell us where you are and what happened — we'll dispatch help fast.</p>
+      <button class="emg-cta"><i class="ti ti-map-pin" style="font-size:15px;"></i> Request Roadside Help</button>
+      <div class="emg-bg-num">01</div>
+    </div>
+    <div class="emg-card">
+      <i class="ti ti-alarm emg-card-icon"></i>
+      <h2>24-Hour<br>Emergency Repair</h2>
+      <p>Tire emergencies don't wait for business hours. Submit your repair request now and we'll call you back as soon as possible.</p>
+      <button class="emg-cta"><i class="ti ti-tool" style="font-size:15px;"></i> Request Emergency Repair</button>
+      <div class="emg-bg-num">24</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Floating Emergency Button ── -->
+<div class="float-emergency">
+  <button class="float-btn secondary" onclick="open24HrModal()"><i class="ti ti-alarm"></i> 24-Hr Repair</button>
+  <button class="float-btn float-pulse" onclick="openRoadsideModal()"><i class="ti ti-alert-triangle"></i> Roadside Help</button>
+</div>
+
+<!-- ── Gallery ── -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="gt-label" style="margin-bottom:10px;">Inside the Shop</div>
+      <h2>Real work.<br>Real results.</h2>
+    </div>
+    <p class="gallery-sub">New & used tires. Alignments. Wheels. Professional service — in and out fast.</p>
+  </div>
+
+  <!-- Row 1: wide + tall -->
+  <div class="photo-grid-top">
+    <div class="photo-cell" style="height:340px;">
+      <img src="images/shop-exterior.png" alt="Guerrero's Tires storefront in Livermore CA">
+      <div class="mask-right"></div>
+      <div class="mask-bottom"></div>
+      <div class="photo-caption">
+        <div class="photo-caption-label">3581 1st St · Livermore, CA</div>
+        <h3>The shop that keeps<br>Livermore moving</h3>
+      </div>
+    </div>
+    <div class="photo-cell" style="height:340px;">
+      <div class="photo-red-bar"></div>
+      <img src="images/mechanics-at-work.png" alt="Mechanics at work in the service bay">
+      <div class="mask-bottom"></div>
+      <div class="photo-caption">
+        <div class="photo-caption-label">Service Bay</div>
+        <h3>Fast, professional installs</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: three equal -->
+  <div class="photo-grid-bottom">
+    <div class="photo-cell" style="height:240px;">
+      <img src="images/service-bay.png" alt="Guerrero's Tires stone facade and signage">
+      <div class="mask-bottom"></div>
+      <div class="photo-caption">
+        <div class="photo-caption-label">Livermore, CA</div>
+        <h3>Easy to find, easy to trust</h3>
+      </div>
+    </div>
+    <div class="photo-cell" style="height:240px;">
+      <img src="images/wheel-showroom.png" alt="Wheel and rim display showroom">
+      <div class="mask-bottom"></div>
+      <div class="photo-caption">
+        <div class="photo-caption-label">In-Store</div>
+        <h3>Rims & wheels in stock</h3>
+      </div>
+    </div>
+    <div class="photo-cell" style="height:240px;">
+      <img src="images/mechanics-at-work.png" alt="State-of-the-art tire equipment">
+      <div class="mask-bottom" style="background:linear-gradient(to top,#0d0d0d 0%,rgba(13,13,13,0.4) 50%,rgba(13,13,13,0) 80%);"></div>
+      <div class="photo-caption">
+        <div class="photo-caption-label">Equipment</div>
+        <h3>Precision balancing & mounting</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-num">20<span class="gt-red">+</span></div><div class="stat-desc">Years serving Livermore</div></div>
+    <div class="stat-cell"><div class="stat-num">30<span class="gt-red">min</span></div><div class="stat-desc">Average service time</div></div>
+    <div class="stat-cell"><div class="stat-num">5<span class="gt-red">★</span></div><div class="stat-desc">Yelp rating</div></div>
+    <div class="stat-cell"><div class="stat-num">New<span class="gt-red">&</span>Used</div><div class="stat-desc">Tires for every budget</div></div>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div>
+      <div class="gt-label" style="margin-bottom:10px;">What We Offer</div>
+      <h2>Our Services</h2>
+    </div>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card"><i class="ti ti-circle-dotted"></i><h3>Tire Installation</h3><p>Professional mounting and balancing for all tire brands. New and used options available for every budget.</p></div>
+    <div class="svc-card"><i class="ti ti-refresh"></i><h3>Tire Rotation</h3><p>Extend the life of your tires with regular rotation. Evenly distributes wear for maximum performance.</p></div>
+    <div class="svc-card"><i class="ti ti-adjustments-horizontal"></i><h3>Wheel Alignment</h3><p>Precision alignment keeps your vehicle handling correctly and prevents premature tire wear.</p></div>
+    <div class="svc-card"><i class="ti ti-tool"></i><h3>Flat Tire Repair</h3><p>Emergency flat repair, even near closing time. We assess and fix or replace your tire fast.</p></div>
+    <div class="svc-card"><i class="ti ti-gauge"></i><h3>Wheel Balancing</h3><p>Eliminate vibration and uneven wear with expert wheel balancing. In and out in as little as 20 minutes.</p></div>
+    <div class="svc-card"><i class="ti ti-engine"></i><h3>Brake Service</h3><p>Full brake inspection, pad and rotor replacement, and fluid flush. Stop safely, every time.</p></div>
+  </div>
+</section>
+
+<!-- ── Why Choose Us ── -->
+<section class="why">
+  <h2>Why Choose Us?</h2>
+  <p class="why-sub">We're here for whatever you need</p>
+  <div class="why-grid">
+    <div class="why-item"><div class="icon-circle"><i class="ti ti-clock"></i></div><div><h3>In & Out in 20–30 Min</h3><p>Most tire jobs are done fast. We respect your time and get you back on the road without the wait.</p></div></div>
+    <div class="why-item"><div class="icon-circle"><i class="ti ti-currency-dollar"></i></div><div><h3>Honest, Affordable Pricing</h3><p>Transparent quotes, no surprises. New and used tire options so there's always something for your budget.</p></div></div>
+    <div class="why-item"><div class="icon-circle"><i class="ti ti-users"></i></div><div><h3>Local & Community-Trusted</h3><p>Proudly serving Livermore and the Bay Area. Repeat customers from Pleasanton to San Francisco trust us.</p></div></div>
+    <div class="why-item"><div class="icon-circle"><i class="ti ti-shield-check"></i></div><div><h3>We Make It Right</h3><p>If something isn't right, we fix it — no questions asked. Your satisfaction is the job, not just the tire.</p></div></div>
+  </div>
+</section>
+
+<!-- ── Reviews ── -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <div class="gt-label" style="margin-bottom:12px;">Yelp Reviews</div>
+    <h2>What Our Customers Are Saying</h2>
+    <div class="rating-row">
+      <span class="stars">★★★★★</span>
+      <span class="rating-num">5.0</span>
+      <span class="gt-muted" style="font-size:14px;">· Featuring our 5-star reviews · Trusted across the Bay Area</span>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"Super fast service! This is the second time I've come here for tire installation and alignment, and I would definitely recommend them."</blockquote><div><div class="reviewer-name">Mariela G.</div><div class="reviewer-loc">Livermore, CA</div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"Friendly staff and I was in and out in less than 30 minutes for a full tire change. Great service, super affordable, and I'll definitely be back!"</blockquote><div><div class="reviewer-name">Renée R.</div><div class="reviewer-loc">San Leandro, CA</div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"They helped me with an emergency flat tire just before closing. The staff was incredibly friendly, fixed my tire immediately, and had me back on the road in minutes."</blockquote><div><div class="reviewer-name">Mimi B.</div><div class="reviewer-loc">Pittsburg, CA</div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"Their prices were the best, and they had two front tires balanced and installed in just 20 minutes."</blockquote><div><div class="reviewer-name">Bob J.</div><div class="reviewer-loc">Pleasanton, CA</div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"Fast service, fair prices, and honest recommendations. They explained all my options and helped me choose the best solution. Highly recommend!"</blockquote><div><div class="reviewer-name">Adnan S.</div><div class="reviewer-loc">San Jose, CA</div></div></div>
+    <div class="review-card"><div class="stars">★★★★★</div><blockquote>"When there was an issue with my tire selection, they refunded my purchase, ordered the correct tires, and made everything right. Excellent customer service."</blockquote><div><div class="reviewer-name">Ron H.</div><div class="reviewer-loc">Livermore, CA</div></div></div>
+  </div>
+</section>
+
+<!-- ── Newsletter ── -->
+<div class="newsletter">
+  <div class="newsletter-inner">
+    <div style="max-width:400px;"><h2>Get deals and updates from us.</h2><p class="gt-muted" style="font-size:14px;margin-top:8px;">Promotions and tire tips delivered to your inbox.</p></div>
+    <input type="email" placeholder="Your email address" style="flex:1;max-width:320px;background:#111;border:1px solid #333;color:#fff;padding:14px 18px;font-size:14px;outline:none;font-family:inherit;">
+    <button class="gt-btn-red" style="white-space:nowrap;margin-left:auto;">Subscribe</button>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <img src="assets/logo.svg" class="footer-logo" alt="Guerrero's Tires logo">
+      <p class="footer-tagline">Quality tires. Honest prices.</p>
+      <p class="footer-about">Your car gets you to what matters most. Trust Guerrero's to keep you moving safely and affordably.</p>
+      <div class="social-row">
+        <a href="#" class="social-btn"><i class="ti ti-brand-facebook"></i></a>
+        <a href="#" class="social-btn"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="ti ti-brand-yelp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <div class="footer-links">
+        <a href="#services">Tire Installation</a>
+        <a href="#services">Tire Rotation</a>
+        <a href="#services">Wheel Alignment</a>
+        <a href="#services">Flat Repair</a>
+        <a href="#services">Wheel Balancing</a>
+        <a href="#services">Brake Service</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <div class="footer-hours">
+        <div class="footer-hours-row"><span>Mon – Fri</span><span>8:30 – 6:00</span></div>
+        <div class="footer-hours-row"><span>Saturday</span><span>9:00 – 5:00</span></div>
+        <div class="footer-hours-row closed"><span>Sunday</span><span>Closed</span></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Find Us</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-row"><i class="ti ti-map-pin"></i><span>3581 1st St<br>Livermore, CA 94551</span></div>
+        <div class="footer-contact-row"><i class="ti ti-phone"></i><a href="tel:9254491904" style="color:#9ca3af;text-decoration:none;">(925) 449-1904</a></div>
+      </div>
+      <p style="font-size:11px;color:#555;font-style:italic;margin-top:16px;">The shop cat approves.</p>
+    </div>
+    <div class="footer-cat-col">
+      <img src="images/office-cat.jpg" alt="Guerrero's Tires shop cat">
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Guerrero's Tires · Livermore, CA · All rights reserved.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+<div class="footer-wordmark"><div class="footer-wordmark-text">Guerrero's</div></div>
+
+<!-- ── Roadside Assistance Modal ── -->
+<div class="modal-overlay" id="roadside-overlay" onclick="if(event.target===this)closeRoadsideModal()">
+  <div class="modal">
+    <div class="modal-header" style="background:#1a0505;">
+      <div>
+        <div class="modal-header-sub"><i class="ti ti-alert-triangle" style="font-size:11px;margin-right:4px;"></i>Emergency Service</div>
+        <div class="modal-header-title">Roadside Assistance</div>
+      </div>
+      <button class="close-btn" onclick="closeRoadsideModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div id="roadside-form-view">
+      <div class="modal-body">
+        <div class="step-bar" id="roadside-steps">
+          <div class="step active" id="rs-s1"></div>
+          <div class="step" id="rs-s2"></div>
+          <div class="step" id="rs-s3"></div>
+        </div>
+        <!-- Step 1: Issue -->
+        <div id="rs-step1">
+          <div class="field"><span class="field-label">What's the problem?</span>
+            <div class="svc-chips">
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Flat Tire</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Blowout</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Tire Won't Inflate</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Rim Damage</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Spare Needed</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Other</div>
+            </div>
+          </div>
+          <div class="field"><span class="field-label">How many tires affected?</span>
+            <select class="inp"><option value="">Select...</option><option>1</option><option>2</option><option>3+</option></select>
+          </div>
+        </div>
+        <!-- Step 2: Location -->
+        <div id="rs-step2" style="display:none;">
+          <div class="field">
+            <span class="field-label">Your Location</span>
+            <button onclick="getGPS()" style="width:100%;background:#1a0808;border:1px dashed #e52929;color:#e52929;padding:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;"><i class="ti ti-current-location" style="font-size:16px;"></i> Use My Current Location</button>
+            <input class="inp" id="rs-address" placeholder="Or type your address / nearest cross street">
+            <p class="field-note">Include any landmarks to help us find you faster.</p>
+          </div>
+          <div class="field"><span class="field-label">Vehicle</span>
+            <div class="row2">
+              <input class="inp" placeholder="Year & Make (e.g. 2018 Honda)">
+              <input class="inp" placeholder="Model (e.g. Civic)">
+            </div>
+          </div>
+        </div>
+        <!-- Step 3: Contact -->
+        <div id="rs-step3" style="display:none;">
+          <div class="field"><span class="field-label">Your Name</span><input class="inp" placeholder="Full name"></div>
+          <div class="field"><span class="field-label">Phone Number</span><input class="inp" type="tel" placeholder="(925) 000-0000">
+            <p class="field-note">We'll call or text you with an ETA.</p>
+          </div>
+          <div class="field"><span class="field-label">Additional Notes</span><textarea class="inp" rows="2" placeholder="Anything else we should know?" style="resize:none;"></textarea></div>
+          <div style="background:#1a0808;border:1px solid #3a1010;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-top:4px;">
+            <i class="ti ti-phone" style="font-size:22px;color:#e52929;"></i>
+            <div><div style="font-size:13px;font-weight:700;">For fastest response</div><div style="font-size:12px;color:#9ca3af;">Call directly: <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="rs-back-btn" onclick="rsStep(-1)" style="display:none;">Back</button>
+        <button class="btn-red-modal" id="rs-next-btn" onclick="rsStep(1)">Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i></button>
+      </div>
+    </div>
+    <div class="success-view" id="roadside-success" style="display:none;">
+      <div class="success-icon"><i class="ti ti-truck-delivery"></i></div>
+      <div style="font-size:18px;font-weight:800;">Help is on the way!</div>
+      <p style="color:#9ca3af;font-size:14px;line-height:1.7;">We received your request. Expect a call within minutes. If urgent, call us directly at <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a>.</p>
+      <button class="btn-red-modal" onclick="closeRoadsideModal()" style="margin-top:8px;">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 24-Hour Repair Modal ── -->
+<div class="modal-overlay" id="repair24-overlay" onclick="if(event.target===this)close24HrModal()">
+  <div class="modal">
+    <div class="modal-header" style="background:#0a0a1a;">
+      <div>
+        <div class="modal-header-sub"><i class="ti ti-alarm" style="font-size:11px;margin-right:4px;"></i>After-Hours Service</div>
+        <div class="modal-header-title">24-Hour Emergency Repair</div>
+      </div>
+      <button class="close-btn" onclick="close24HrModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div id="repair24-form-view">
+      <div class="modal-body">
+        <div class="step-bar" id="repair24-steps">
+          <div class="step active" id="r24-s1"></div>
+          <div class="step" id="r24-s2"></div>
+          <div class="step" id="r24-s3"></div>
+        </div>
+        <!-- Step 1: Service & Urgency -->
+        <div id="r24-step1">
+          <div class="field"><span class="field-label">Service Needed</span>
+            <div class="svc-chips">
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Tire Installation</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Flat Repair</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Wheel Alignment</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Wheel Balancing</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Brake Service</div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div>Other</div>
+            </div>
+          </div>
+          <div class="field"><span class="field-label">Urgency</span>
+            <select class="inp"><option value="">Select urgency level...</option><option>ASAP — I'm stranded</option><option>Tonight</option><option>First thing tomorrow</option><option>Within 24 hours</option></select>
+          </div>
+        </div>
+        <!-- Step 2: Vehicle & Issue -->
+        <div id="r24-step2" style="display:none;">
+          <div class="field"><span class="field-label">Vehicle</span>
+            <div class="row2">
+              <input class="inp" placeholder="Year & Make">
+              <input class="inp" placeholder="Model">
+            </div>
+          </div>
+          <div class="field"><span class="field-label">Describe the Issue</span>
+            <textarea class="inp" rows="3" placeholder="Tell us what's happening — sounds, symptoms, warning lights..." style="resize:none;"></textarea>
+          </div>
+        </div>
+        <!-- Step 3: Contact & Callback -->
+        <div id="r24-step3" style="display:none;">
+          <div class="field"><span class="field-label">Your Name</span><input class="inp" placeholder="Full name"></div>
+          <div class="field"><span class="field-label">Phone Number</span><input class="inp" type="tel" placeholder="(925) 000-0000"></div>
+          <div class="field"><span class="field-label">Best Time to Call Back</span>
+            <select class="inp"><option value="">Select a window...</option><option>Right now</option><option>Within the hour</option><option>Tonight after 8 PM</option><option>Early morning (6–8 AM)</option><option>Anytime</option></select>
+          </div>
+          <div style="background:#0d0d1a;border:1px solid #1a1a3a;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-top:4px;">
+            <i class="ti ti-clock-24" style="font-size:22px;color:#6b8cff;"></i>
+            <div><div style="font-size:13px;font-weight:700;">We monitor requests 24/7</div><div style="font-size:12px;color:#9ca3af;">Or call directly: <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="r24-back-btn" onclick="r24Step(-1)" style="display:none;">Back</button>
+        <button class="btn-red-modal" id="r24-next-btn" onclick="r24Step(1)">Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i></button>
+      </div>
+    </div>
+    <div class="success-view" id="repair24-success" style="display:none;">
+      <div class="success-icon"><i class="ti ti-alarm"></i></div>
+      <div style="font-size:18px;font-weight:800;">Request Received!</div>
+      <p style="color:#9ca3af;font-size:14px;line-height:1.7;">We'll call you back at your requested time. For immediate help call <a href="tel:9254491904" style="color:#e52929;font-weight:700;">(925) 449-1904</a>.</p>
+      <button class="btn-red-modal" onclick="close24HrModal()" style="margin-top:8px;">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Book Appointment Modal ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div id="form-view">
+      <div class="modal-header">
+        <div>
+          <div class="modal-header-sub">Guerrero's Tires</div>
+          <div class="modal-header-title">Book an appointment</div>
+        </div>
+        <button class="close-btn" onclick="closeModal()"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="step-bar">
+          <div class="step active" id="s1"></div>
+          <div class="step" id="s2"></div>
+          <div class="step" id="s3"></div>
+        </div>
+        <div id="step1">
+          <div class="field">
+            <label class="field-label">Service needed</label>
+            <div class="svc-chips">
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Tire installation</span></div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Tire rotation</span></div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Wheel alignment</span></div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Flat repair</span></div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Wheel balancing</span></div>
+              <div class="chip" onclick="toggleChip(this)"><div class="chip-dot"></div><span>Brake service</span></div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Vehicle info</label>
+            <div class="row2">
+              <select class="inp"><option value="">Year</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>Older</option></select>
+              <input class="inp" type="text" placeholder="Make (e.g. Toyota)">
+            </div>
+            <input class="inp" style="margin-top:10px;" type="text" placeholder="Model (e.g. Camry)">
+          </div>
+        </div>
+        <div id="step2" style="display:none;">
+          <div class="field">
+            <label class="field-label">Preferred date</label>
+            <input class="inp" type="date" id="appt-date">
+            <div class="field-note">Mon–Fri 8:30am–6pm · Sat 9am–5pm · Closed Sundays</div>
+          </div>
+          <div class="field">
+            <label class="field-label">Preferred time</label>
+            <select class="inp"><option value="">Select a time</option><option>8:30 AM</option><option>9:00 AM</option><option>9:30 AM</option><option>10:00 AM</option><option>10:30 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option></select>
+          </div>
+          <div class="field">
+            <label class="field-label">Notes (optional)</label>
+            <textarea class="inp" rows="3" placeholder="Any details about your vehicle or service request..." style="resize:none;"></textarea>
+          </div>
+        </div>
+        <div id="step3" style="display:none;">
+          <div class="field">
+            <label class="field-label">Your name</label>
+            <div class="row2"><input class="inp" type="text" placeholder="First name"><input class="inp" type="text" placeholder="Last name"></div>
+          </div>
+          <div class="field">
+            <label class="field-label">Phone number</label>
+            <input class="inp" type="tel" placeholder="(555) 000-0000">
+            <div class="field-note">We'll send a confirmation text.</div>
+          </div>
+          <div class="field">
+            <label class="field-label">Email (optional)</label>
+            <input class="inp" type="email" placeholder="you@example.com">
+          </div>
+          <hr style="border:none;border-top:1px solid #222;margin:4px 0 20px;">
+          <p style="font-size:12px;color:#555;line-height:1.6;">For same-day service, call us at <span style="color:#e52929;">(925) 449-1904</span>.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="back-btn" onclick="prevStep()" style="display:none;">Back</button>
+        <button class="btn-red-modal" id="next-btn" onclick="nextStep()">Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i></button>
+      </div>
+    </div>
+    <div class="success-view" id="success-view">
+      <div class="success-icon"><i class="ti ti-check"></i></div>
+      <div style="font-size:20px;font-weight:800;">You're booked!</div>
+      <p style="font-size:14px;color:#9ca3af;line-height:1.7;max-width:320px;">We'll text you a confirmation shortly. See you at <span style="color:#fff;">3581 1st St, Livermore.</span></p>
+      <button class="btn-red-modal" onclick="resetModal()">Book another appointment</button>
+      <a href="tel:9254491904" style="font-size:13px;color:#e52929;text-decoration:none;">Or call (925) 449-1904</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let step = 1;
+  function openModal() { document.getElementById('modal-overlay').classList.add('open'); }
+  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+  function toggleChip(el) { el.classList.toggle('selected'); }
+  function updateSteps() {
+    for (let i = 1; i <= 3; i++) {
+      const s = document.getElementById('s'+i);
+      s.className = 'step' + (i < step ? ' done' : i === step ? ' active' : '');
+      const el = document.getElementById('step'+i);
+      if (el) el.style.display = i === step ? 'block' : 'none';
+    }
+    document.getElementById('back-btn').style.display = step > 1 ? 'inline-flex' : 'none';
+    document.getElementById('next-btn').innerHTML = step === 3
+      ? '<i class="ti ti-calendar-check" style="font-size:15px;vertical-align:-2px;margin-right:6px;"></i> Confirm booking'
+      : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
+  }
+  function nextStep() {
+    if (step < 3) { step++; updateSteps(); }
+    else { document.getElementById('form-view').style.display='none'; document.getElementById('success-view').style.display='flex'; }
+  }
+  function prevStep() { if (step > 1) { step--; updateSteps(); } }
+  function resetModal() {
+    step = 1;
+    document.getElementById('form-view').style.display = 'block';
+    document.getElementById('success-view').style.display = 'none';
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    updateSteps();
+  }
+  document.getElementById('appt-date').min = new Date().toISOString().split('T')[0];
+
+  // ── Roadside Modal ──
+  var rsStepNum = 1;
+  function openRoadsideModal() { document.getElementById('roadside-overlay').classList.add('open'); rsStepNum=1; updateRsSteps(); }
+  function closeRoadsideModal() { document.getElementById('roadside-overlay').classList.remove('open'); document.getElementById('roadside-form-view').style.display='block'; document.getElementById('roadside-success').style.display='none'; rsStepNum=1; updateRsSteps(); }
+  function updateRsSteps() {
+    [1,2,3].forEach(function(i){
+      document.getElementById('rs-step'+i).style.display = i===rsStepNum?'block':'none';
+      var s=document.getElementById('rs-s'+i);
+      s.className='step'+(i<rsStepNum?' done':i===rsStepNum?' active':'');
+    });
+    document.getElementById('rs-back-btn').style.display = rsStepNum>1?'inline-block':'none';
+    document.getElementById('rs-next-btn').innerHTML = rsStepNum===3
+      ? '<i class="ti ti-truck-delivery" style="font-size:14px;vertical-align:-1px;margin-right:6px;"></i> Send Request'
+      : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
+  }
+  function rsStep(dir) {
+    if(dir===1 && rsStepNum<3) { rsStepNum++; updateRsSteps(); }
+    else if(dir===1 && rsStepNum===3) { document.getElementById('roadside-form-view').style.display='none'; document.getElementById('roadside-success').style.display='flex'; }
+    else if(dir===-1 && rsStepNum>1) { rsStepNum--; updateRsSteps(); }
+  }
+  function getGPS() {
+    if(!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function(pos){
+      document.getElementById('rs-address').value = pos.coords.latitude.toFixed(5)+', '+pos.coords.longitude.toFixed(5)+' (GPS coordinates)';
+    });
+  }
+
+  // ── 24-Hour Repair Modal ──
+  var r24StepNum = 1;
+  function open24HrModal() { document.getElementById('repair24-overlay').classList.add('open'); r24StepNum=1; updateR24Steps(); }
+  function close24HrModal() { document.getElementById('repair24-overlay').classList.remove('open'); document.getElementById('repair24-form-view').style.display='block'; document.getElementById('repair24-success').style.display='none'; r24StepNum=1; updateR24Steps(); }
+  function updateR24Steps() {
+    [1,2,3].forEach(function(i){
+      document.getElementById('r24-step'+i).style.display = i===r24StepNum?'block':'none';
+      var s=document.getElementById('r24-s'+i);
+      s.className='step'+(i<r24StepNum?' done':i===r24StepNum?' active':'');
+    });
+    document.getElementById('r24-back-btn').style.display = r24StepNum>1?'inline-block':'none';
+    document.getElementById('r24-next-btn').innerHTML = r24StepNum===3
+      ? '<i class="ti ti-calendar-check" style="font-size:14px;vertical-align:-1px;margin-right:6px;"></i> Submit Request'
+      : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
+  }
+  function r24Step(dir) {
+    if(dir===1 && r24StepNum<3) { r24StepNum++; updateR24Steps(); }
+    else if(dir===1 && r24StepNum===3) { document.getElementById('repair24-form-view').style.display='none'; document.getElementById('repair24-success').style.display='flex'; }
+    else if(dir===-1 && r24StepNum>1) { r24StepNum--; updateR24Steps(); }
+  }
+
+  // Sequential service card highlight loop
+  (function() {
+    const cards = document.querySelectorAll('.svc-card');
+    let idx = 0;
+    function highlight() {
+      cards.forEach(c => c.classList.remove('featured'));
+      cards[idx].classList.add('featured');
+      idx = (idx + 1) % cards.length;
+    }
+    highlight();
+    setInterval(highlight, 3000);
+  })();
+</script>
+</body>
+</html>
