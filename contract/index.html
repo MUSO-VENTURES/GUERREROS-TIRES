@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Guerreros Tires Contract</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Website agreement between MUSO VENTURES and Guerrero Tires, ready to sign online with a drawn signature.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF7;
+    --surface:#FFFFFF;
+    --surface-2:#F2EFE8;
+    --border:#E1DCD1;
+    --ink:#1B2126;
+    --muted:#5B6670;
+    --heading:#0D2B3E;
+    --accent:#3D9DB3;
+    --accent-ink:#0D4653;
+    --locked-bg:#EEF6F5;
+    --locked-border:#BFE0DC;
+    --status-good-bg:#E4F3EA; --status-good-fg:#1C7A46;
+    --status-pending-bg:#FBEFE0; --status-pending-fg:#9A5B12;
+    --eyebrow:#1E5F74;
+    --focus:#3D9DB3;
+  }
+  /* Deliberately single-theme: a signed legal document should look the
+     same to every signer regardless of their device's dark/light setting. */
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    margin:0; color:var(--ink);
+    font-family:'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .hero{
+    background:var(--surface-2);
+    border-top:5px solid var(--accent);
+    border-bottom:1px solid var(--border);
+    padding:48px 24px 40px;
+  }
+  .hero-inner{max-width:720px; margin:0 auto;}
+  .eyebrow{
+    font-family:'Syne', sans-serif; font-weight:700; font-size:0.78rem;
+    letter-spacing:0.22em; color:var(--eyebrow); margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:'Bebas Neue', Impact, 'Arial Narrow Bold', sans-serif;
+    font-size:clamp(2.2rem, 6vw, 3.2rem); line-height:1.02; letter-spacing:0.01em;
+    margin:0 0 18px; text-wrap:balance; color:var(--heading);
+  }
+  .hero-meta{font-size:0.95rem; color:var(--muted); margin:4px 0;}
+  .hero-meta strong{color:var(--heading); font-weight:700;}
+  .status-row{margin-top:22px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .pill{
+    display:inline-flex; align-items:center; gap:7px; padding:6px 14px; border-radius:999px;
+    font-family:'Syne', sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:0.04em;
+  }
+  .pill.pending{background:var(--status-pending-bg); color:var(--status-pending-fg);}
+  .pill.good{background:var(--status-good-bg); color:var(--status-good-fg);}
+  .pill svg{width:12px; height:12px;}
+
+  main{max-width:720px; margin:0 auto; padding:48px 24px 80px;}
+  .lede{
+    font-size:1.02rem; color:var(--muted); margin:0 0 40px; padding-bottom:32px;
+    border-bottom:1px solid var(--border);
+  }
+  section.clause{margin:0 0 34px;}
+  .clause-head{display:flex; align-items:baseline; gap:12px; margin:0 0 10px;}
+  .clause-num{
+    font-family:'Bebas Neue', sans-serif; font-size:1.5rem; color:var(--accent); min-width:2ch;
+  }
+  .clause-title{
+    font-family:'Syne', sans-serif; font-weight:700; font-size:1.08rem; color:var(--heading);
+    text-wrap:balance; margin:0;
+  }
+  .clause p{margin:0 0 12px; color:var(--ink);}
+  .clause ul{margin:0 0 12px; padding-left:0; list-style:none;}
+  .clause li{position:relative; padding-left:20px; margin:0 0 8px; color:var(--ink);}
+  .clause li::before{content:"\2013"; position:absolute; left:0; color:var(--accent); font-weight:700;}
+  .kv strong{color:var(--heading); font-weight:700;}
+
+  .sig-wrap{margin-top:56px; padding-top:8px;}
+  .sig-heading{
+    font-family:'Bebas Neue', sans-serif; font-size:1.7rem; color:var(--heading);
+    margin:0 0 6px; letter-spacing:0.01em;
+  }
+  .sig-sub{color:var(--muted); margin:0 0 28px; font-size:0.96rem;}
+  .sig-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:640px){ .sig-grid{grid-template-columns:1fr;} }
+
+  .sig-card{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px;}
+  .sig-card.locked{background:var(--locked-bg); border-color:var(--locked-border);}
+  .sig-party{
+    font-family:'Syne', sans-serif; font-weight:700; font-size:0.92rem; color:var(--heading);
+    margin:0 0 18px; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  label{display:block; font-size:0.78rem; color:var(--muted); margin:16px 0 6px; font-weight:500;}
+  label .req{color:var(--accent);}
+  input[type="text"], input[type="email"]{
+    width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border);
+    background:var(--surface); color:var(--ink); font-family:'DM Sans', sans-serif; font-size:0.95rem;
+  }
+  input[type="text"]:focus, input[type="email"]:focus{outline:2px solid var(--focus); outline-offset:1px;}
+  .agree{display:flex; gap:10px; align-items:flex-start; margin-top:18px; font-size:0.86rem; color:var(--muted);}
+  .agree input{margin-top:3px;}
+  .signed-name{font-family:'Caveat', cursive; font-size:2.1rem; color:var(--heading); line-height:1; margin:2px 0 4px;}
+  .signed-sig-img{display:block; max-width:100%; height:auto; max-height:110px; margin:4px 0 8px;}
+  .signed-line{font-size:0.86rem; color:var(--muted); margin:2px 0;}
+  .signed-audit{margin-top:14px; padding-top:12px; border-top:1px dashed var(--locked-border); font-size:0.76rem; color:var(--muted);}
+
+  .sigpad-canvas-box{
+    position:relative; border:1.5px dashed var(--border); border-radius:10px;
+    background:var(--surface); touch-action:none; overflow:hidden;
+  }
+  .sigpad-canvas-box canvas{display:block; width:100%; height:230px; cursor:crosshair;}
+  .sigpad-baseline{position:absolute; left:20px; right:20px; bottom:44px; border-bottom:1.5px solid var(--border); pointer-events:none;}
+  .sigpad-hint{
+    position:absolute; left:0; right:0; top:44%; transform:translateY(-50%); text-align:center;
+    color:var(--muted); font-family:'DM Sans', sans-serif; font-size:0.9rem; pointer-events:none;
+  }
+  .sigpad-actions{display:flex; justify-content:flex-end; margin-top:6px;}
+  .sigpad-clear{
+    background:none; border:none; color:var(--accent); font-family:'DM Sans', sans-serif;
+    font-size:0.8rem; font-weight:500; cursor:pointer; padding:3px 4px;
+  }
+  .sigpad-clear:hover{text-decoration:underline;}
+
+  .submit-row{margin-top:28px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  button.primary{
+    font-family:'Syne', sans-serif; font-weight:700; font-size:0.92rem; letter-spacing:0.02em;
+    background:var(--accent); color:var(--accent-ink); border:none; border-radius:9px;
+    padding:13px 26px; cursor:pointer;
+  }
+  button.primary:disabled{opacity:0.55; cursor:not-allowed;}
+  .form-msg{font-size:0.86rem; color:var(--status-pending-fg); min-height:1.2em; margin:10px 0 0;}
+  .form-msg.error{color:#C64545;}
+  .form-msg.ok{color:var(--status-good-fg);}
+
+  footer{max-width:720px; margin:0 auto; padding:0 24px 60px; color:var(--muted); font-size:0.82rem;}
+  .loading-note{color:var(--muted); font-size:0.9rem;}
+</style>
+</head>
+<body>
+
+<div class="hero"><div class="hero-inner">
+  <p class="eyebrow">MUSO VENTURES</p>
+  <h1>Website Design &amp; Development Agreement</h1>
+  <p class="hero-meta">Prepared for <strong>Guerrero Tires</strong></p>
+  <p class="hero-meta">Effective Date: <strong>August 29, 2026</strong></p>
+  <div class="status-row" id="status-row"><span class="pill pending">Loading...</span></div>
+</div></div>
+
+<main>
+  <p class="lede">Read the agreement below, then sign electronically at the bottom of the page. No printing, scanning, or account required.</p>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">01</span><h2 class="clause-title">PARTIES &amp; EFFECTIVE DATE</h2></div>
+    <p>This Website Design &amp; Development Agreement (&ldquo;Agreement&rdquo;) is entered into as of August 29, 2026 (&ldquo;Effective Date&rdquo;), by and between:</p>
+    <p class="kv"><strong>Developer:</strong> MUSO VENTURES (&ldquo;Developer&rdquo;)</p>
+    <p class="kv"><strong>Client:</strong> Guerrero Tires, attn. Rey Guerrero (Owner), 3581 1st St, Livermore, CA 94551 (&ldquo;Client&rdquo;)</p>
+    <p>Developer and Client may each be referred to individually as a &ldquo;Party&rdquo; and together as the &ldquo;Parties.&rdquo;</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">02</span><h2 class="clause-title">SCOPE OF WORK</h2></div>
+    <p>Developer will design and build a basic single-page business website for Client consisting of the following sections:</p>
+    <ul><li>Home</li><li>Services</li><li>About</li><li>Contact</li></ul>
+    <p>Any additional pages, sections, features, or functionality not listed above, including but not limited to contact forms, e-commerce, custom animation, copywriting, photography, or search engine optimization, are outside the scope of this Agreement and will be quoted and billed separately if requested.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">03</span><h2 class="clause-title">FUTURE WORK &amp; ADDITIONAL SERVICES</h2></div>
+    <p>This Agreement covers only the single-page website described in Section 02. Any future pages, marketing services (including but not limited to SEO campaigns, paid advertising, email marketing, or social media management), web application features, or other functionality added after delivery will require a separate, secondary agreement between the Parties and will be billed separately from this Agreement at rates to be agreed upon at that time.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">04</span><h2 class="clause-title">TIMELINE</h2></div>
+    <p>Developer will deliver the completed website within two (2) weeks of the Effective Date, contingent on Client providing all required content (text, images, logo, and other assets) within three (3) days of the Effective Date. Delays in Client providing content will extend the delivery timeline accordingly.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">05</span><h2 class="clause-title">FEES &amp; PAYMENT</h2></div>
+    <p>Total project value is Two Thousand Dollars ($2,000.00), payable as follows:</p>
+    <ul><li>$1,000.00 in cash</li><li>$1,000.00 in trade credit, redeemable by Developer for tire services and mechanical work at Guerrero's Tires</li></ul>
+    <p>Payment is due in two equal installments:</p>
+    <ul><li>50% due upon execution of this Agreement: $500.00 cash + $500.00 trade credit</li><li>50% due upon delivery of the completed website: $500.00 cash + $500.00 trade credit</li></ul>
+    <p>Trade credit does not expire unless otherwise agreed in writing by both Parties, and is redeemable by Developer (or its designee) directly with Client. Work will not begin until the first installment is received, and final website files/access will not be delivered until the final installment is received in full.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">06</span><h2 class="clause-title">REVISIONS</h2></div>
+    <p>This Agreement includes one (1) round of revisions to the initial design delivered by Developer. Additional revision rounds, or requests made after final delivery, will be billed separately at Developer&rsquo;s then-current hourly rate.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">07</span><h2 class="clause-title">HOSTING, DOMAIN &amp; MAINTENANCE</h2></div>
+    <p>Developer will provide basic website hosting as part of this Agreement. Ongoing maintenance (content updates, plugin/security updates, backups, and similar work) is not included and will be billed separately if requested. Domain name registration and renewal are Client&rsquo;s responsibility unless otherwise agreed in writing. Any service beyond what is listed in this Agreement, including hosting upgrades, maintenance plans, or additional support, will be quoted and billed separately.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">08</span><h2 class="clause-title">OWNERSHIP &amp; INTELLECTUAL PROPERTY</h2></div>
+    <p>Upon receipt of payment in full, Client will own the final website design and content created specifically for Client under this Agreement. Developer retains ownership of any pre-existing tools, templates, code libraries, or frameworks used to build the site, and grants Client a non-exclusive license to use them as part of the delivered website. Developer reserves the right to display the completed website in its portfolio and marketing materials unless Client requests otherwise in writing.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">09</span><h2 class="clause-title">CLIENT RESPONSIBILITIES</h2></div>
+    <p>Client is responsible for providing all text, images, logo files, and other content needed to complete the website, and for timely feedback during the revision period. Client is responsible for ensuring it has the rights to use any content it provides to Developer.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">10</span><h2 class="clause-title">WARRANTY &amp; DISCLAIMER</h2></div>
+    <p>Developer will perform the work in a professional and workmanlike manner. Except as expressly stated in this Agreement, the website is provided &ldquo;as is,&rdquo; without warranties of any kind, express or implied, including fitness for a particular purpose.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">11</span><h2 class="clause-title">TERMINATION</h2></div>
+    <p>Either Party may terminate this Agreement in writing if the other Party materially breaches its obligations and fails to cure the breach within seven (7) days of written notice. If Client terminates without cause after work has begun, amounts paid to date (cash and trade credit) are non-refundable, and Developer will deliver work completed up to the termination date.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">12</span><h2 class="clause-title">INDEPENDENT CONTRACTOR</h2></div>
+    <p>Developer is an independent contractor, not an employee, agent, or partner of Client. Nothing in this Agreement creates a joint venture, partnership, or employment relationship between the Parties.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">13</span><h2 class="clause-title">LIMITATION OF LIABILITY</h2></div>
+    <p>To the maximum extent permitted by law, Developer&rsquo;s total liability under this Agreement will not exceed the total amount paid by Client under this Agreement. Neither Party will be liable for indirect, incidental, or consequential damages arising from this Agreement.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">14</span><h2 class="clause-title">GOVERNING LAW</h2></div>
+    <p>This Agreement is governed by the laws of the State of California, without regard to its conflict of law principles.</p>
+  </section>
+
+  <section class="clause"><div class="clause-head"><span class="clause-num">15</span><h2 class="clause-title">ENTIRE AGREEMENT</h2></div>
+    <p>This Agreement constitutes the entire understanding between the Parties regarding its subject matter and supersedes all prior discussions or agreements, written or oral. Any changes must be made in writing and signed by both Parties.</p>
+  </section>
+
+  <div class="sig-wrap">
+    <h2 class="sig-heading">16&nbsp;&nbsp;Signatures</h2>
+    <p class="sig-sub" id="sig-sub">By signing below, the Parties agree to the terms of this Agreement.</p>
+    <div class="sig-grid">
+      <div class="sig-card locked">
+        <p class="sig-party">MUSO VENTURES</p>
+        <div class="signed-name">Shane Musseau</div>
+        <p class="signed-line">Founder, MUSO VENTURES</p>
+        <p class="signed-line">Signed August 29, 2026</p>
+        <div class="signed-audit">Authorized to sign on behalf of MUSO VENTURES.</div>
+      </div>
+      <div id="client-slot"><p class="loading-note">Loading...</p></div>
+    </div>
+  </div>
+</main>
+
+<footer>Governed by the laws of the State of California. Questions about this Agreement? Contact MUSO VENTURES.</footer>
+
+<script>
+(function(){
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbzeiv0caJSUS47nnAZajxdJUkihAWpEksxycKefk8jFI8EOLd-fMJ3-PK8o4Ez7MfYPVg/exec';
+  var CONTRACT_ID = 'guerrero-tires-website-agreement';
+  var CONTRACT_LABEL = 'Guerrero Tires Website Agreement';
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function checkIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  }
+  function clockIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>';
+  }
+
+  function renderPendingUI(){
+    document.getElementById('status-row').innerHTML =
+      '<span class="pill pending">' + clockIcon() + ' Awaiting Client signature</span>';
+    document.getElementById('sig-sub').textContent = 'By signing below, the Parties agree to the terms of this Agreement.';
+    document.getElementById('client-slot').innerHTML = clientCardForm();
+    wireForm();
+  }
+
+  function renderSignedUI(rec){
+    document.getElementById('status-row').innerHTML =
+      '<span class="pill good">' + checkIcon() + ' Fully executed</span>';
+    document.getElementById('sig-sub').textContent = 'Both parties have signed. This page is the executed record of this Agreement.';
+    var extra = 'Electronically signed via MUSO VENTURES contract portal on ' + esc(rec.timestamp) + '.' +
+      (rec.email ? ' Copy requested at ' + esc(rec.email) + '.' : '');
+    document.getElementById('client-slot').innerHTML =
+      '<div class="sig-card locked"><p class="sig-party">Guerrero Tires (Client)</p>' +
+      '<img class="signed-sig-img" src="' + rec.signatureImage + '" alt="Signature of ' + esc(rec.nameTitle) + '">' +
+      '<p class="signed-line">' + esc(rec.nameTitle) + '</p>' +
+      '<p class="signed-line">Signed ' + esc(rec.dateStr) + '</p>' +
+      '<div class="signed-audit">' + extra + '</div></div>';
+  }
+
+  function clientCardForm(){
+    return '' +
+      '<div class="sig-card" id="client-card">' +
+      '<p class="sig-party">Guerrero Tires (Client)</p>' +
+      '<label for="sig-canvas">Draw your signature <span class="req">*</span></label>' +
+      '<div class="sigpad-canvas-box">' +
+      '<canvas id="sig-canvas"></canvas>' +
+      '<div class="sigpad-baseline"></div>' +
+      '<div class="sigpad-hint" id="sig-hint">Draw here with mouse, trackpad, or finger</div>' +
+      '</div>' +
+      '<div class="sigpad-actions"><button type="button" class="sigpad-clear" id="sig-clear">Clear signature</button></div>' +
+      '<label for="f-title">Print name / title <span class="req">*</span></label>' +
+      '<input type="text" id="f-title" value="Rey Guerrero, Owner">' +
+      '<label for="f-email">Email <span style="color:var(--muted); font-weight:400;">(optional, to receive your copy)</span></label>' +
+      '<input type="email" id="f-email" autocomplete="email" placeholder="you@example.com">' +
+      '<label class="agree" for="f-agree">' +
+      '<input type="checkbox" id="f-agree">' +
+      '<span>I am authorized to sign on behalf of Guerrero Tires and agree that drawing my signature above and checking this box constitutes my legal electronic signature, valid under the U.S. ESIGN Act.</span>' +
+      '</label>' +
+      '<div class="submit-row"><button class="primary" id="submit-btn" type="button">Sign &amp; Submit</button></div>' +
+      '<p class="form-msg" id="form-msg"></p>' +
+      '</div>';
+  }
+
+  function setupSignaturePad(canvas){
+    var ctx = canvas.getContext('2d');
+    var drawing = false, hasInk = false, last = null;
+
+    function strokeColor(){
+      var v = getComputedStyle(document.documentElement).getPropertyValue('--heading').trim();
+      return v || '#0D2B3E';
+    }
+    function resize(){
+      var rect = canvas.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var prevUrl = hasInk ? canvas.toDataURL('image/png') : null;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineWidth = 2.6;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = strokeColor();
+      if (prevUrl){
+        var img = new Image();
+        img.onload = function(){ ctx.drawImage(img, 0, 0, rect.width, rect.height); };
+        img.src = prevUrl;
+      }
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function pos(e){
+      var rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+    function hideHint(){ var h = document.getElementById('sig-hint'); if (h) h.style.display = 'none'; }
+    function showHint(){ var h = document.getElementById('sig-hint'); if (h) h.style.display = ''; }
+    function start(e){ drawing = true; hasInk = true; hideHint(); last = pos(e); try { canvas.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); }
+    function move(e){ if (!drawing) return; var p = pos(e); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; e.preventDefault(); }
+    function end(){ drawing = false; last = null; }
+
+    canvas.addEventListener('pointerdown', start);
+    canvas.addEventListener('pointermove', move);
+    canvas.addEventListener('pointerup', end);
+    canvas.addEventListener('pointercancel', end);
+    canvas.addEventListener('pointerleave', function(){ if (drawing) end(); });
+
+    return {
+      clear: function(){ var rect = canvas.getBoundingClientRect(); ctx.clearRect(0, 0, rect.width, rect.height); hasInk = false; showHint(); },
+      hasInk: function(){ return hasInk; },
+      dataUrl: function(){ return canvas.toDataURL('image/png'); }
+    };
+  }
+
+  function wireForm(){
+    var btn = document.getElementById('submit-btn');
+    if (!btn) return;
+    var canvas = document.getElementById('sig-canvas');
+    var sigPad = canvas ? setupSignaturePad(canvas) : null;
+    var clearBtn = document.getElementById('sig-clear');
+    if (clearBtn && sigPad) clearBtn.addEventListener('click', function(){ sigPad.clear(); });
+
+    btn.addEventListener('click', async function(){
+      var title = document.getElementById('f-title').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var agree = document.getElementById('f-agree').checked;
+      var msg = document.getElementById('form-msg');
+      msg.className = 'form-msg error';
+      if (!sigPad || !sigPad.hasInk()){ msg.textContent = 'Please draw your signature above.'; return; }
+      if (!title){ msg.textContent = 'Please enter your printed name / title.'; return; }
+      if (!agree){ msg.textContent = "Please check the box to confirm you're authorized to sign."; return; }
+
+      btn.disabled = true;
+      msg.className = 'form-msg';
+      msg.textContent = 'Submitting...';
+
+      var now = new Date();
+      var dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+      var timestamp = now.toLocaleString('en-US', { year:'numeric', month:'long', day:'numeric', hour:'numeric', minute:'2-digit', timeZoneName:'short' });
+
+      var payload = {
+        _formType: 'contract_signature',
+        contract_id: CONTRACT_ID,
+        contract_label: CONTRACT_LABEL,
+        signatureImage: sigPad.dataUrl(),
+        nameTitle: title,
+        email: email,
+        dateStr: dateStr,
+        timestamp: timestamp,
+        consent: true
+      };
+
+      try {
+        var res = await fetch(GAS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        var result = await res.json();
+        if (result.status === 'ok' || result.status === 'already_signed'){
+          msg.className = 'form-msg ok';
+          msg.textContent = 'Signed! Loading your confirmation...';
+          await loadStatus();
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        msg.className = 'form-msg error';
+        msg.textContent = 'Something went wrong submitting your signature. Please try again in a moment.';
+      }
+    });
+  }
+
+  async function loadStatus(){
+    try {
+      var res = await fetch(GAS_URL + '?contract=' + encodeURIComponent(CONTRACT_ID));
+      var data = await res.json();
+      if (data.signed){
+        renderSignedUI(data);
+      } else {
+        renderPendingUI();
+      }
+    } catch (err) {
+      renderPendingUI();
+    }
+  }
+
+  loadStatus();
+})();
+</script>
+</body>
+</html>
