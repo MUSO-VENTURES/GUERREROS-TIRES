@@ -173,6 +173,47 @@
     background:#FDFCFA;
   }
   form.sign-form input[type="text"]:focus{outline:2px solid var(--cyan);outline-offset:1px;}
+  .sig-pad-wrap{
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#FDFCFA;
+    margin-bottom:8px;
+    overflow:hidden;
+  }
+  #sigCanvas{
+    display:block;
+    width:100%;
+    height:170px;
+    touch-action:none;
+    cursor:crosshair;
+  }
+  .sig-baseline{
+    position:absolute;
+    left:24px;
+    right:24px;
+    bottom:34px;
+    border-bottom:1px dashed var(--line);
+    pointer-events:none;
+  }
+  .sig-pad-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .sig-hint{font-size:12.5px;color:var(--ink-soft);}
+  .clear-sig-btn{
+    background:none;
+    border:none;
+    color:var(--cyan);
+    font-family:'DM Sans',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    text-decoration:underline;
+    padding:0;
+  }
   .attest{
     display:flex;
     gap:10px;
@@ -382,12 +423,19 @@
           <label for="fullName">Full legal name</label>
           <input type="text" id="fullName" name="fullName" placeholder="Rey Guerrero" required>
 
-          <label for="typedSig">Type your name to sign</label>
-          <input type="text" id="typedSig" name="typedSig" placeholder="Type full name as your electronic signature" required>
+          <label for="sigCanvas">Sign below</label>
+          <div class="sig-pad-wrap">
+            <canvas id="sigCanvas"></canvas>
+            <div class="sig-baseline"></div>
+          </div>
+          <div class="sig-pad-actions">
+            <span class="sig-hint">Draw your signature with mouse or finger</span>
+            <button type="button" id="clearSig" class="clear-sig-btn">Clear</button>
+          </div>
 
           <div class="attest">
             <input type="checkbox" id="attest" name="attest" required>
-            <label for="attest" style="font-weight:400;margin:0;">I am Rey Guerrero, or authorized to sign on behalf of Guerrero Tires, and I agree this typed name constitutes my legally binding electronic signature on this Agreement.</label>
+            <label for="attest" style="font-weight:400;margin:0;">I am Rey Guerrero, or authorized to sign on behalf of Guerrero Tires, and I agree this drawn signature constitutes my legally binding electronic signature on this Agreement.</label>
           </div>
 
           <button type="submit" class="submit-sign" id="submitBtn">Sign Agreement</button>
@@ -423,12 +471,79 @@
   const statusEl = document.getElementById('formStatus');
   const btn = document.getElementById('submitBtn');
 
+  // ---- Signature pad ----
+  const canvas = document.getElementById('sigCanvas');
+  const ctx = canvas.getContext('2d');
+  let hasSignature = false;
+  let drawing = false;
+  let last = {x:0,y:0};
+
+  function sizeCanvas(){
+    const ratio = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#152A33';
+  }
+  sizeCanvas();
+  window.addEventListener('resize', function(){
+    const dataUrl = hasSignature ? canvas.toDataURL('image/png') : null;
+    sizeCanvas();
+    if (dataUrl) {
+      const img = new Image();
+      img.onload = () => ctx.drawImage(img, 0, 0, canvas.width / (window.devicePixelRatio||1), canvas.height / (window.devicePixelRatio||1));
+      img.src = dataUrl;
+    }
+  });
+
+  function getPos(e){
+    const rect = canvas.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+  }
+  function startDraw(e){ drawing = true; hasSignature = true; last = getPos(e); e.preventDefault(); }
+  function moveDraw(e){
+    if(!drawing) return;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(last.x, last.y);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    last = pos;
+    e.preventDefault();
+  }
+  function endDraw(){ drawing = false; }
+
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', moveDraw);
+  window.addEventListener('mouseup', endDraw);
+  canvas.addEventListener('touchstart', startDraw, {passive:false});
+  canvas.addEventListener('touchmove', moveDraw, {passive:false});
+  canvas.addEventListener('touchend', endDraw);
+
+  document.getElementById('clearSig').addEventListener('click', function(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasSignature = false;
+  });
+  // ---- End signature pad ----
+
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     const fullName = document.getElementById('fullName').value.trim();
-    const typedSig = document.getElementById('typedSig').value.trim();
 
-    if (!fullName || !typedSig) return;
+    if (!fullName) return;
+
+    if (!hasSignature) {
+      statusEl.textContent = 'Please draw your signature above before submitting.';
+      statusEl.className = 'form-status err';
+      return;
+    }
+
+    const signatureImage = canvas.toDataURL('image/png');
 
     btn.disabled = true;
     btn.textContent = 'Submitting…';
@@ -439,7 +554,7 @@
       document: 'Guerrero Tires Website Design & Development Agreement',
       effectiveDate: 'August 29, 2026',
       signerName: fullName,
-      typedSignature: typedSig,
+      signatureImage: signatureImage,
       signedAt: new Date().toISOString(),
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     };
