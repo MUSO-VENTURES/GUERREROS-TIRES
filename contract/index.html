@@ -417,7 +417,7 @@
   // Wire this to the same Google Apps Script Gmail relay used for the NDA gate system,
   // so a signature submission here fires the same signed-PDF delivery flow.
   // Replace with the deployed Apps Script Web App URL.
-  const SIGNATURE_ENDPOINT = "REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL";
+  const SIGNATURE_ENDPOINT = "https://script.google.com/macros/s/AKfycbwb3y2q9HWBiTZV3fA8UiNCB4VkEW_TUDpeHSMHkSTyGYLjWqhcsJBNSQFlwV5beDFqYA/exec";
 
   const form = document.getElementById('signForm');
   const statusEl = document.getElementById('formStatus');
