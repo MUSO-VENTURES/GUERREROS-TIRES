@@ -209,6 +209,120 @@
     .success-view { display: none; flex-direction: column; align-items: center; text-align: center; padding: 40px 28px; gap: 16px; }
     .success-icon { width: 64px; height: 64px; border-radius: 50%; background: #1e0808; border: 2px solid #e52929; display: flex; align-items: center; justify-content: center; }
     .success-icon i { font-size: 28px; color: #e52929; }
+    /* ── Mobile menu toggle ── */
+    .nav-toggle { display: none; background: transparent; border: 1px solid #2a2a2a; width: 42px; height: 38px; cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+    .nav-toggle span { display: block; width: 18px; height: 2px; background: #fff; transition: transform 0.2s, opacity 0.2s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .nav-mobile-ctas { display: none; }
+
+    /* ── Tablet & small laptop ── */
+    @media (max-width: 1180px) {
+      nav { padding: 10px 24px; }
+      .nav-logo { height: 72px; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #000; border-bottom: 1px solid #222; flex-direction: column; gap: 0; padding: 8px 24px 20px; font-size: 16px; }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 14px 0; border-bottom: 1px solid #1a1a1a; }
+      .nav-links li.nav-mobile-ctas { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; }
+      .nav-links li.nav-mobile-ctas a { border-bottom: 1px solid #e52929; text-align: center; padding: 14px; font-size: 14px; }
+      .nav-links li.nav-mobile-ctas a.gt-btn-red { border: none; }
+      .emergency-cards { gap: 24px; padding: 40px 24px; }
+      .emg-card { width: auto; flex: 1 1 0; max-width: 480px; }
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+      .footer-cat-col { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { padding: 48px 24px; }
+      .hero h1 { font-size: 44px; }
+      .services, .why, .reviews { padding: 48px 24px; }
+      .gallery-header { padding: 0 24px 32px; }
+      .gallery-sub { white-space: normal; }
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .stat-cell:nth-child(-n+2) { border-bottom: 1px solid #1a1a1a; }
+      .emergency-cards { flex-direction: column; align-items: stretch; }
+      .emg-card { max-width: none; flex: none; width: 100%; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+      footer { padding: 40px 24px 0; }
+    }
+
+    /* ── Phones ── */
+    @media (max-width: 600px) {
+      nav { padding: 8px 16px; }
+      .nav-logo { height: 52px; }
+      .nav-emg-btn, .nav-book-btn { display: none !important; }
+      .lang-toggle button { padding: 8px 10px !important; }
+      .nav-links { padding: 4px 16px 18px; }
+
+      .hero { min-height: 0; padding: 40px 20px 44px; }
+      .hero-gradient { background: linear-gradient(to bottom, rgba(17,17,17,0.80) 0%, rgba(17,17,17,0.88) 100%); }
+      .hero-photo { object-position: 70% center; }
+      .hero h1 { font-size: 36px; letter-spacing: -0.5px; }
+      .hero-tagline { font-size: 16px; }
+      .hero-desc { font-size: 15px; max-width: none; margin-bottom: 28px; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas a { text-align: center; padding: 14px 20px; }
+      .hero-stats { flex-wrap: wrap; gap: 18px 24px; margin-top: 32px; }
+      .hero-stats > div:first-child { flex-basis: 100%; }
+      .hero-stats .hero-divider { display: none; }
+
+      .emergency-banner { padding: 12px 16px; text-align: center; }
+      .emergency-banner .banner-icon { display: none; }
+      .emergency-cards { padding: 28px 16px; gap: 16px; }
+      .emg-card { padding: 32px 22px; }
+      .emg-card-icon { font-size: 40px; margin-bottom: 18px; }
+      .emg-card h2 { font-size: 26px; }
+      .emg-card p { margin-bottom: 24px; }
+      .emg-card .emg-cta { width: 100%; justify-content: center; padding: 15px 16px; }
+      .emg-card .emg-bg-num { font-size: 140px; }
+
+      .float-emergency { bottom: 16px; right: 16px; }
+      .float-btn { padding: 13px 16px; }
+
+      .gallery { padding-top: 48px; }
+      .gallery-header { padding: 0 20px 28px; }
+      .gallery-header h2, .section-header h2, .why h2, .reviews-header h2 { font-size: 28px; }
+      .photo-grid-top, .photo-grid-bottom { grid-template-columns: 1fr; }
+      .photo-cell.tall { height: 260px !important; }
+      .photo-cell.short { height: 200px !important; }
+      .mask-right { display: none; }
+      .stat-cell { padding: 20px; }
+      .stat-num { font-size: 26px; }
+
+      .services, .why, .reviews { padding: 44px 20px; }
+      .section-header { margin-bottom: 28px; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .svc-card { padding: 28px 22px; }
+      .why-sub { margin-bottom: 32px; }
+      .why-grid { grid-template-columns: 1fr; gap: 24px; }
+      .reviews-header { margin-bottom: 28px; }
+      .rating-row { flex-wrap: wrap; text-align: center; }
+      .review-card { padding: 20px; }
+
+      footer { padding: 36px 20px 80px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-about { max-width: none; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+      .modal-overlay { padding: 10px; align-items: flex-end; }
+      .modal { max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }
+      .modal-header { padding: 18px 20px 16px; }
+      .modal-body { padding: 20px; }
+      .modal-footer { padding: 14px 20px; }
+      .modal-footer .btn-red-modal { flex: 1; }
+      .form-err { margin: 0 20px 14px; }
+      .inp { font-size: 16px; }
+      .chip { font-size: 13px; padding: 12px 10px; }
+      .row2 { gap: 10px; }
+      .success-view { padding: 32px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -216,21 +330,26 @@
 <!-- ── Nav ── -->
 <nav id="top">
   <img src="assets/logo.svg" class="nav-logo" alt="Guerrero's Tires logo">
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#top" class="active" data-i18n="nav-home">Home</a></li>
     <li><a href="#services" data-i18n="nav-services">Services</a></li>
     <li><a href="#emergency" data-i18n="nav-emergency">Emergency</a></li>
     <li><a href="#gallery" data-i18n="nav-gallery">Gallery</a></li>
     <li><a href="#reviews" data-i18n="nav-reviews">Reviews</a></li>
     <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+    <li class="nav-mobile-ctas">
+      <a href="tel:9254491904" class="gt-btn-outline" style="border-color:#e52929;color:#e52929;"><i class="ti ti-phone" style="margin-right:6px;"></i>(925) 449-1904</a>
+      <a href="#" class="gt-btn-red" onclick="closeNav();openModal();return false;">Book Appointment</a>
+    </li>
   </ul>
-  <div style="display:flex;gap:8px;align-items:center;">
-    <div style="display:flex;border:1px solid #2a2a2a;overflow:hidden;font-size:12px;font-weight:600;">
+  <div class="nav-actions">
+    <div class="lang-toggle" style="display:flex;border:1px solid #2a2a2a;overflow:hidden;font-size:12px;font-weight:600;">
       <button id="lang-en" onclick="setLang('en')" style="background:#e52929;color:#fff;border:none;padding:7px 12px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.5px;">EN</button>
       <button id="lang-es" onclick="setLang('es')" style="background:transparent;color:#666;border:none;padding:7px 12px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.5px;">ES</button>
     </div>
-    <a href="#" class="gt-btn-outline" style="font-size:12px;padding:8px 16px;border-color:#e52929;color:#e52929;" onclick="openRoadsideModal();return false;"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px;"></i>Emergency</a>
-    <a href="#" class="gt-btn-red" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;" data-i18n="book-btn">Book Appointment</a>
+    <a href="#" class="gt-btn-outline nav-emg-btn" style="font-size:12px;padding:8px 16px;border-color:#e52929;color:#e52929;" onclick="openRoadsideModal();return false;"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px;"></i>Emergency</a>
+    <a href="#" class="gt-btn-red nav-book-btn" style="font-size:13px;padding:9px 20px;" onclick="openModal(); return false;" data-i18n="book-btn">Book Appointment</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -248,7 +367,7 @@
       <a href="https://maps.google.com/?q=3581+1st+St+Livermore+CA+94551" class="gt-btn-outline" target="_blank" data-i18n="btn-directions">Get Directions</a>
     </div>
     <div class="hero-stats">
-      <div><div style="font-size:20px;font-weight:800;">(925) 449-1904</div><div class="hero-stat-label" data-i18n="stat-call">Call Us Today</div></div>
+      <div><a href="tel:9254491904" style="font-size:20px;font-weight:800;color:#fff;text-decoration:none;">(925) 449-1904</a><div class="hero-stat-label" data-i18n="stat-call">Call Us Today</div></div>
       <div class="hero-divider"></div>
       <div><div style="font-size:20px;font-weight:800;">Mon–Fri</div><div class="hero-stat-label" data-i18n="stat-hours-wk">8:30 AM – 6:00 PM</div></div>
       <div class="hero-divider"></div>
@@ -262,9 +381,9 @@
 <!-- ── Emergency Services ── -->
 <section class="emergency" id="emergency">
   <div class="emergency-banner">
-    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+    <i class="ti ti-alert-triangle banner-icon" style="font-size:16px;"></i>
     <span data-i18n="emg-banner">Available for emergencies — Call us anytime: (925) 449-1904</span>
-    <i class="ti ti-alert-triangle" style="font-size:16px;"></i>
+    <i class="ti ti-alert-triangle banner-icon" style="font-size:16px;"></i>
   </div>
   <div class="emergency-cards">
     <div class="emg-card" onclick="openRoadsideModal()">
@@ -300,7 +419,7 @@
 
   <!-- Row 1: wide + tall -->
   <div class="photo-grid-top">
-    <div class="photo-cell" style="height:340px;">
+    <div class="photo-cell tall" style="height:340px;">
       <img src="images/shop-exterior.png" alt="Guerrero's Tires storefront in Livermore CA">
       <div class="mask-right"></div>
       <div class="mask-bottom"></div>
@@ -309,7 +428,7 @@
         <h3 data-i18n="cap1-h3">The shop that keeps<br>Livermore moving</h3>
       </div>
     </div>
-    <div class="photo-cell" style="height:340px;">
+    <div class="photo-cell tall" style="height:340px;">
       <div class="photo-red-bar"></div>
       <img src="images/mechanics-at-work.png" alt="Mechanics at work in the service bay">
       <div class="mask-bottom"></div>
@@ -322,7 +441,7 @@
 
   <!-- Row 2: three equal -->
   <div class="photo-grid-bottom">
-    <div class="photo-cell" style="height:240px;">
+    <div class="photo-cell short" style="height:240px;">
       <img src="images/service-bay.png" alt="Guerrero's Tires stone facade and signage">
       <div class="mask-bottom"></div>
       <div class="photo-caption">
@@ -330,7 +449,7 @@
         <h3 data-i18n="cap3-h3">Easy to find, easy to trust</h3>
       </div>
     </div>
-    <div class="photo-cell" style="height:240px;">
+    <div class="photo-cell short" style="height:240px;">
       <img src="images/wheel-showroom.png" alt="Wheel and rim display showroom">
       <div class="mask-bottom"></div>
       <div class="photo-caption">
@@ -338,7 +457,7 @@
         <h3 data-i18n="cap4-h3">Rims & wheels in stock</h3>
       </div>
     </div>
-    <div class="photo-cell" style="height:240px;">
+    <div class="photo-cell short" style="height:240px;">
       <img src="images/mechanics-at-work.png" alt="State-of-the-art tire equipment">
       <div class="mask-bottom" style="background:linear-gradient(to top,#0d0d0d 0%,rgba(13,13,13,0.4) 50%,rgba(13,13,13,0) 80%);"></div>
       <div class="photo-caption">
@@ -715,6 +834,17 @@
       ? '<i class="ti ti-calendar-check" style="font-size:15px;vertical-align:-2px;margin-right:6px;"></i> Confirm booking'
       : 'Next step <i class="ti ti-arrow-right" style="font-size:14px;vertical-align:-1px;"></i>';
   }
+  // ── Mobile nav ──
+  function toggleNav() {
+    var open = document.getElementById('nav-links').classList.toggle('open');
+    var btn = document.getElementById('nav-toggle'); btn.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
+  }
+  function closeNav() {
+    document.getElementById('nav-links').classList.remove('open');
+    var btn = document.getElementById('nav-toggle'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false');
+  }
+  document.querySelectorAll('#nav-links a[href^="#"]').forEach(function(a){ a.addEventListener('click', closeNav); });
+
   // ── Form delivery (Formspree) ──
   // To route requests to the shop's own inbox, swap in its Formspree form ID here.
   var FORM_ENDPOINT = 'https://formspree.io/f/mlgkjdaz';
