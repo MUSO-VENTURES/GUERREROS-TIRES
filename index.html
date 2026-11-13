@@ -98,7 +98,9 @@
     .why-item p { font-size: 13px; line-height: 1.7; color: #9ca3af; }
 
     /* ── Reviews ── */
-    .reviews { padding: 60px 40px; background: #161616; }
+    .reviews { padding: 24px 40px 60px; background: #111; }
+    .why { padding-bottom: 36px; }
+    .reviews-header { padding-top: 40px; border-top: 1px solid #222; max-width: 800px; margin-left: auto; margin-right: auto; }
     .reviews-header { text-align: center; margin-bottom: 40px; }
     .reviews-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
     .rating-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; }
@@ -241,7 +243,8 @@
     @media (max-width: 900px) {
       .hero { padding: 48px 24px; }
       .hero h1 { font-size: 44px; }
-      .services, .why, .reviews { padding: 48px 24px; }
+      .services, .why { padding: 48px 24px; }
+      .reviews { padding: 16px 24px 48px; }
       .gallery-header { padding: 0 24px 32px; }
       .gallery-sub { white-space: normal; }
       .svc-grid { grid-template-columns: repeat(2, 1fr); }
@@ -299,7 +302,9 @@
       .stat-cell { padding: 20px; }
       .stat-num { font-size: 26px; }
 
-      .services, .why, .reviews { padding: 44px 20px; }
+      .services, .why { padding: 44px 20px 28px; }
+      .reviews { padding: 12px 20px 44px; }
+      .reviews-header { padding-top: 32px; }
       .section-header { margin-bottom: 28px; }
       .svc-grid { grid-template-columns: 1fr; }
       .svc-card { padding: 28px 22px; }
@@ -498,7 +503,7 @@
 </section>
 
 <!-- ── Why Choose Us ── -->
-<section class="why">
+<section class="why" id="reviews">
   <h2 data-i18n="why-h2">Why Choose Us?</h2>
   <p class="why-sub" data-i18n="why-sub">We're here for whatever you need</p>
   <div class="why-grid">
@@ -510,7 +515,7 @@
 </section>
 
 <!-- ── Reviews ── -->
-<section class="reviews" id="reviews">
+<section class="reviews" id="customer-reviews">
   <div class="reviews-header">
     <div class="gt-label" style="margin-bottom:12px;" data-i18n="yelp-label">Yelp Reviews</div>
     <h2 data-i18n="reviews-h2">What Our Customers Are Saying</h2>
